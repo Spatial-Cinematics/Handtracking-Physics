@@ -706,6 +706,7 @@
               <e p="OVRTracker.cs" t="Include" />
               <e p="OVRXRSDKNative.cs" t="Include" />
               <e p="Util" t="Include">
+                <e p="FlipNormals.cs" t="Include" />
                 <e p="OVRAudioSourceTest.cs" t="Include" />
                 <e p="OVRAutoDestroyInMRC.cs" t="Include" />
                 <e p="OVRChromaticAberration.cs" t="Include" />
