@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70c2f484f132c044097f03d65cac3b24, type: 3}
-  m_Name: OvrAvatarSettings
+  m_Script: {fileID: 11500000, guid: b3d881e962d099f4a8eb492ef7e9a8c0, type: 3}
+  m_Name: OculusPlatformSettings
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  ovrAppID: 
-=======
   ovrAppID: 2681620091921851
->>>>>>> 94c4850d181fa00698101499df674d3cf76dc5df
-  ovrGearAppID: 
+  ovrMobileAppID: 
+  ovrUseStandalonePlatform: 1
