@@ -1,18 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using OculusSampleFramework;
 using UnityEngine;
 
-public class HTGrabber : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+public class HTGrabber : MonoBehaviour {
+
+    private OVRHand hand;
+    private HandSkeleton skeleton;
+
+    private void Start() {
+
+        print(FindObjectOfType<OVRSkeleton>());
+        Debug.Break();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void Update() {
     }
 }

@@ -2121,6 +2121,7 @@ GameObject:
   - component: {fileID: 114967099535744886}
   - component: {fileID: 33811978543982920}
   - component: {fileID: 137079780900962704}
+  - component: {fileID: 1683363383527637}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
@@ -2128,6 +2129,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1683363383527637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683363383527636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d67bc7981119d41ae3d3c943bf8fc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1683363781824106
 GameObject:
   m_ObjectHideFlags: 0
