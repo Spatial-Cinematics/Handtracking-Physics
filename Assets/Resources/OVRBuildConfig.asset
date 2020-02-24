@@ -12,10 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20553fac56ec59645857c0732b787431, type: 3}
   m_Name: OVRBuildConfig
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
   androidSDKPath: 
-=======
-  androidSDKPath: D:\Program Files\2019.3.0f6\Editor\Data\PlaybackEngines\AndroidPlayer\SDK
->>>>>>> 94c4850d181fa00698101499df674d3cf76dc5df
   gradlePath: 
   jdkPath: 

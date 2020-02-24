@@ -23,8 +23,8 @@ public class MorphController : MonoBehaviour {
     [ContextMenu("Configure")]
     private void Start() {
         affectors = GameObject.FindGameObjectsWithTag("Affector");
-        wire.MapSpline();
-        nodes = wire.nodes.ToArray();
+//        wire.MapSpline();
+//        nodes = wire.nodes.ToArray();
         mat = GetComponent<Renderer>().sharedMaterial;
         mat.SetInt("_NodesLength", nodes.Length);
         mat.SetVectorArray("_Nodes", nodes);
@@ -61,9 +61,9 @@ public class MorphController : MonoBehaviour {
     [ContextMenu("Move to pos")]
     public void MoveToPos() {
 
-        if (nodes == null)
-            nodes = wire.nodes.ToArray();
-        
+//        if (nodes == null)
+//            nodes = wire.nodes.ToArray();
+//        
         SetTransition();
         transform.position = GetNewPos();
         transform.rotation = GetNewRot();

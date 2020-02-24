@@ -747,6 +747,24 @@
             </e>
           </e>
         </e>
+        <e p="Scripts" t="Include">
+          <e p="ExtensionMethods" t="Include">
+            <e p="AnimatorExtensions.cs" t="Include" />
+            <e p="ArrayExtensions.cs" t="Include" />
+            <e p="AudioSourceExtensions.cs" t="Include" />
+            <e p="FloatExtensions.cs" t="Include" />
+            <e p="IntExtensions.cs" t="Include" />
+            <e p="ListExtensions.cs" t="Include" />
+            <e p="MaterialExtensions.cs" t="Include" />
+            <e p="QuaternionExtensions.cs" t="Include" />
+            <e p="StringExtensions.cs" t="Include" />
+            <e p="TransformExtension.cs" t="Include" />
+            <e p="Vector3Extensions.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Shaders" t="Include">
+          <e p="Triplanar.shader" t="Include" />
+        </e>
       </e>
       <e p="hand-tracking-playground.sln" t="IncludeFlat" />
       <e p="obj" t="ExcludeRecursive" />
