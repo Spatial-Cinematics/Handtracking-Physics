@@ -180,6 +180,11 @@
               <e p="NetChat" t="Include">
                 <e p="DataEntry.cs" t="Include" />
               </e>
+              <e p="RichPresenceSample" t="Include">
+                <e p="Scripts" t="Include">
+                  <e p="RichPresenceSample.cs" t="Include" />
+                </e>
+              </e>
               <e p="SimplePlatformSample" t="Include">
                 <e p="DataEntry.cs" t="Include" />
               </e>
@@ -430,6 +435,7 @@
                   <e p="HandPhysics.cs" t="Include" />
                   <e p="Hands.cs" t="Include" />
                   <e p="HandSkeleton.cs" t="Include" />
+                  <e p="HandsManager.cs" t="Include" />
                   <e p="Interactable.cs" t="Include" />
                   <e p="InteractableRegistry.cs" t="Include" />
                   <e p="InteractableToolsCreator.cs" t="Include" />
@@ -533,6 +539,7 @@
                 <e p="Scripts" t="Include">
                   <e p="ControllerBoxController.cs" t="Include" />
                   <e p="CowController.cs" t="Include" />
+                  <e p="HandsActiveChecker.cs" t="Include" />
                   <e p="PanelHMDFollower.cs" t="Include" />
                   <e p="SelectionCylinder.cs" t="Include" />
                   <e p="TrackSegment.cs" t="Include" />
@@ -671,6 +678,7 @@
               </e>
               <e p="Editor" t="Include">
                 <e p="Oculus.VR.Scripts.Editor.asmdef" t="Include" />
+                <e p="OVRCustomSkeletonEditor.cs" t="Include" />
                 <e p="OVRManagerEditor.cs" t="Include" />
                 <e p="OVROverlayDestRectEditor.shader" t="Include" />
                 <e p="OVROverlayEditor.cs" t="Include" />
@@ -704,6 +712,7 @@
                 <e p="OVRControllerHelper.cs" t="Include" />
                 <e p="OVRCubemapCapture.cs" t="Include" />
                 <e p="OVRCursor.cs" t="Include" />
+                <e p="OVRCustomSkeleton.cs" t="Include" />
                 <e p="OVRDebugInfo.cs" t="Include" />
                 <e p="OVRGazePointer.cs" t="Include" />
                 <e p="OVRGearVrControllerTest.cs" t="Include" />
@@ -761,6 +770,7 @@
             <e p="TransformExtension.cs" t="Include" />
             <e p="Vector3Extensions.cs" t="Include" />
           </e>
+          <e p="HTGrabber.cs" t="Include" />
         </e>
         <e p="Shaders" t="Include">
           <e p="Triplanar.shader" t="Include" />
