@@ -16,10 +16,12 @@ public class HTGrabber : MonoBehaviour {
     private OVRBone palm;
     
     private Text debugText;
+    private OVRGrabbable closest;
     
     private void Start() {
         
         debugText = GameObject.Find("DebugText").GetComponent<Text>();
+        debugText.text = "Text reference set!!!";
         hand = GetComponent<OVRHand>();
         skeleton = GetComponent<OVRSkeleton>();
         
@@ -66,27 +68,63 @@ public class HTGrabber : MonoBehaviour {
 
     }
 
+    private float grabConf;
+    private OVRGrabbable grabbed;
+    
     private void CheckGrab() {
 
-        try {
-            
-            float grabConf = 0;
+        debugText.text = "";
+        grabConf = fingerTips[0].Transform.Distance(palm.Transform);
+        debugText.text += $"Fingertip={fingerTips[0]}";
+        debugText.text += $"grabConf={grabConf}";
+        debugText.text += $"\tpalm={palm}";
+        debugText.text += $"\tskeleton={skeleton.name}";
+        debugText.text += $"\tclosest={closest.name}";
 
-            foreach (OVRBone fingerTip in fingerTips) {
-                grabConf += fingerTip.Transform.Distance(palm.Transform);
-            }
+        closest = GetClosestGrabbable();
 
-            debugText.text = $"Closest grabbable is: {GetClosestGrabbable().name} and has a grab confidence of: {grabConf}";
-
+        if (closest && grabConf < 1) {
+            Grab();
         }
-        catch (Exception e) {
 
-            debugText.text = $"ERROR: palm={palm}\tskeleton={skeleton.name}\tclosest={GetClosestGrabbable()}";
-
+        if (grabbed && grabConf > 1) {
+            Drop();
         }
-        
-        
 
+//        
+//        try {
+//            
+//            grabConf = 0;
+//
+//            foreach (OVRBone fingerTip in fingerTips) {
+//                grabConf += fingerTip.Transform.Distance(palm.Transform);
+//            }
+//
+//            closest = GetClosestGrabbable();
+//            debugText.text = $"Closest grabbable is: {closest.name} and has a grab confidence of: {grabConf}";
+//
+//        }
+//        catch (Exception e) {
+//
+//            debugText.text = "";
+//            debugText.text += $"ERROR: grabConf={grabConf}";
+//            debugText.text += $"\tpalm={palm}";
+//            debugText.text += $"\tskeleton={skeleton.name}";
+//            debugText.text += $"\tclosest={closest.name}";
+//
+//        }
+
+
+    }
+
+    private void Grab() {
+        closest.transform.parent = transform;
+        grabbed = closest;
+    }
+
+    private void Drop() {
+        grabbed.transform.parent = null;
+        grabbed = null;
     }
 
 }
