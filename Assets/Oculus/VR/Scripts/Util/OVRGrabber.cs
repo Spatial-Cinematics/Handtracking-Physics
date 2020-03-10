@@ -24,8 +24,8 @@ using UnityEngine;
 public class OVRGrabber : MonoBehaviour
 {
     // Grip trigger thresholds for picking up objects, with some hysteresis.
-    public float grabBegin = 0.55f;
-    public float grabEnd = 0.35f;
+    public float grabBegin = 0.10f;
+    public float grabEnd = 0.12f;
 
     bool alreadyUpdated = false;
 
@@ -67,7 +67,7 @@ public class OVRGrabber : MonoBehaviour
     protected Quaternion m_lastRot;
     protected Quaternion m_anchorOffsetRotation;
     protected Vector3 m_anchorOffsetPosition;
-    protected float m_prevFlex;
+    protected float flex;
 	protected OVRGrabbable m_grabbedObj = null;
     protected Vector3 m_grabbedObjectPosOff;
     protected Quaternion m_grabbedObjectRotOff;
@@ -172,9 +172,9 @@ public class OVRGrabber : MonoBehaviour
         m_lastPos = transform.position;
         m_lastRot = transform.rotation;
 
-		float prevFlex = m_prevFlex;
+		float prevFlex = flex;
 		// Update values from inputs
-		m_prevFlex = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, m_controller);
+//		flex = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, m_controller);
 
 		CheckForGrabOrRelease(prevFlex);
     }
@@ -222,13 +222,13 @@ public class OVRGrabber : MonoBehaviour
         }
     }
 
-    protected void CheckForGrabOrRelease(float prevFlex)
+    protected virtual void CheckForGrabOrRelease(float prevFlex)
     {
-        if ((m_prevFlex >= grabBegin) && (prevFlex < grabBegin))
+        if ((flex >= grabBegin) && (prevFlex < grabBegin))
         {
             GrabBegin();
         }
-        else if ((m_prevFlex <= grabEnd) && (prevFlex > grabEnd))
+        else if ((flex <= grabEnd) && (prevFlex > grabEnd))
         {
             GrabEnd();
         }

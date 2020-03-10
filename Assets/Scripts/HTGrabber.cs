@@ -5,7 +5,7 @@ using OculusSampleFramework;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HTGrabber : MonoBehaviour {
+public class HTGrabber : OVRGrabber {
 
     private OVRHand hand;
     private OVRSkeleton skeleton;
@@ -17,8 +17,10 @@ public class HTGrabber : MonoBehaviour {
     
     private Text debugText;
     private OVRGrabbable closest;
-    
-    private void Start() {
+
+    protected override void Start() {
+        
+        base.Start();
         
         debugText = GameObject.Find("DebugText").GetComponent<Text>();
         debugText.text = "Text reference set!!!";
@@ -30,101 +32,44 @@ public class HTGrabber : MonoBehaviour {
 
     }
 
-    private void Update() {
-        CheckGrab();
+    public override void Update() {
+        base.Update();
+        GetGrabConfidence();
+        DebugLogGrabConfidence();
+        
     }
 
-    private void OnTriggerEnter(Collider other) {
+    public override void FixedUpdate() {
+        base.FixedUpdate();
+    }
+
+    protected override void CheckForGrabOrRelease(float prevFlex) {
         
-        OVRGrabbable grabbable = other.GetComponent<OVRGrabbable>();
+        Debug.Log($"Checking grab: flex:{flex} <= grabBeg{grabBegin} & prev:{prevFlex} > grabBeg:{grabBegin}");
         
-        if (grabbable) {
-            grabbables.Add(grabbable);
+        if ( !grabbedObject && (flex <= grabBegin))
+        {
+            Debug.Log($"Beginning grab: flex:{flex} <= grabBeg{grabBegin} & prev:{prevFlex} > grabBeg:{grabBegin}");
+            GrabBegin();
+        }
+        else if ((flex >= grabEnd) && (prevFlex < grabEnd))
+        {
+            Debug.Log("Ending Grab");
+            GrabEnd();
         }
         
     }
 
-    private void OnTriggerExit(Collider other) {
-        
-        OVRGrabbable grabbable = other.GetComponent<OVRGrabbable>();
-        
-        if (grabbable && grabbables.Contains(grabbable)) {
-            grabbables.Add(grabbable);
-        }
-        
+    private void GetGrabConfidence() {
+        flex = fingerTips[0].Transform.Distance(palm.Transform);
     }
 
-    private OVRGrabbable GetClosestGrabbable() {
-
-        OVRGrabbable closest = grabbables[0];
-
-        foreach (OVRGrabbable grabbable in grabbables) {
-            if (transform.Distance(grabbable.transform) < transform.Distance(closest.transform)) {
-                closest = grabbable;
-            }
-        }
-
-        return closest;
-
-    }
-
-    private float grabConf;
-    private OVRGrabbable grabbed;
-    
-    private void CheckGrab() {
-
+    private void DebugLogGrabConfidence() {
         debugText.text = "";
-        grabConf = fingerTips[0].Transform.Distance(palm.Transform);
         debugText.text += $"Fingertip={fingerTips[0]}";
-        debugText.text += $"grabConf={grabConf}";
+        debugText.text += $"grabConf={flex}";
         debugText.text += $"\tpalm={palm}";
         debugText.text += $"\tskeleton={skeleton.name}";
-        debugText.text += $"\tclosest={closest.name}";
-
-        closest = GetClosestGrabbable();
-
-        if (closest && grabConf < 1) {
-            Grab();
-        }
-
-        if (grabbed && grabConf > 1) {
-            Drop();
-        }
-
-//        
-//        try {
-//            
-//            grabConf = 0;
-//
-//            foreach (OVRBone fingerTip in fingerTips) {
-//                grabConf += fingerTip.Transform.Distance(palm.Transform);
-//            }
-//
-//            closest = GetClosestGrabbable();
-//            debugText.text = $"Closest grabbable is: {closest.name} and has a grab confidence of: {grabConf}";
-//
-//        }
-//        catch (Exception e) {
-//
-//            debugText.text = "";
-//            debugText.text += $"ERROR: grabConf={grabConf}";
-//            debugText.text += $"\tpalm={palm}";
-//            debugText.text += $"\tskeleton={skeleton.name}";
-//            debugText.text += $"\tclosest={closest.name}";
-//
-//        }
-
-
-    }
-
-    private void Grab() {
-        closest.transform.parent = transform;
-        grabbed = closest;
-    }
-
-    private void Drop() {
-        grabbed.transform.parent = null;
-        grabbed = null;
     }
 
 }
