@@ -11,13 +11,12 @@ GameObject:
   - component: {fileID: 4453513310108136}
   - component: {fileID: 114428879332287356}
   - component: {fileID: 114567484643301796}
-  - component: {fileID: 114392993255165844}
   - component: {fileID: 114925265787909616}
   - component: {fileID: 114252240061623322}
   - component: {fileID: 137619227449585070}
-  - component: {fileID: 7201051013178036321}
   - component: {fileID: 366694595524453887}
   - component: {fileID: 6543435040640730328}
+  - component: {fileID: 3492234225250040926}
   m_Layer: 0
   m_Name: OVRHandPrefab
   m_TagString: Untagged
@@ -69,24 +68,6 @@ MonoBehaviour:
   _updateRootPose: 0
   _updateRootScale: 1
   _enablePhysicsCapsules: 0
---- !u!114 &114392993255165844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1870938896605422}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54c16b381e28e8d479237771d234dbae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _confidenceBehavior: 1
-  _systemGestureBehavior: 1
-  _renderPhysicsCapsules: 0
-  _skeletonMaterial: {fileID: 0}
-  _capsuleMaterial: {fileID: 0}
-  _systemGestureMaterial: {fileID: 0}
 --- !u!114 &114925265787909616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,28 +149,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   m_DirtyAABB: 1
---- !u!114 &7201051013178036321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1870938896605422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54d67bc7981119d41ae3d3c943bf8fc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grabBegin: 0.1
-  grabEnd: 0.13
-  m_parentHeldObject: 0
-  m_moveHandPosition: 0
-  m_gripTransform: {fileID: 4453513310108136}
-  m_grabVolumes:
-  - {fileID: 366694595524453887}
-  m_controller: 0
-  m_parentTransform: {fileID: 4453513310108136}
-  m_player: {fileID: 0}
 --- !u!135 &366694595524453887
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -219,3 +178,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3492234225250040926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870938896605422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d67bc7981119d41ae3d3c943bf8fc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

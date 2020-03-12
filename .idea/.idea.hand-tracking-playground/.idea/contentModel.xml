@@ -771,10 +771,43 @@
             <e p="TransformExtension.cs" t="Include" />
             <e p="Vector3Extensions.cs" t="Include" />
           </e>
+          <e p="HTBehaviour.cs" t="Include" />
           <e p="HTGrabber.cs" t="Include" />
         </e>
         <e p="Shaders" t="Include">
+          <e p="Blending.shader" t="Include" />
+          <e p="Borderlands.shader" t="Include" />
+          <e p="BumpDiffuse.shader" t="Include" />
+          <e p="BumpDiffuseStencil 1.shader" t="Include" />
+          <e p="BumpDiffuseStencil.shader" t="Include" />
+          <e p="ColorVF.shader" t="Include" />
+          <e p="Cutoff.shader" t="Include" />
+          <e p="Extrude.shader" t="Include" />
+          <e p="Glass.shader" t="Include" />
+          <e p="Hole.shader" t="Include" />
+          <e p="Hologram.shader" t="Include" />
+          <e p="Illumination.shader" t="Include" />
+          <e p="Lambert.shader" t="Include" />
+          <e p="Leaves.shader" t="Include" />
+          <e p="MyFirstShader.shader" t="Include" />
+          <e p="Outline (Basic).shader" t="Include" />
+          <e p="Outline.shader" t="Include" />
+          <e p="PBR.shader" t="Include" />
+          <e p="Phong.shader" t="Include" />
+          <e p="PhysicsHand.shader" t="Include" />
+          <e p="Plasma.shader" t="Include" />
+          <e p="PropertiesPractice.shader" t="Include" />
+          <e p="Rim.shader" t="Include" />
+          <e p="Screen Grab.shader" t="Include" />
+          <e p="SpecPBR.shader" t="Include" />
+          <e p="Stencil.shader" t="Include" />
           <e p="Triplanar.shader" t="Include" />
+          <e p="UseProperties.shader" t="Include" />
+          <e p="UVScroll.shader" t="Include" />
+          <e p="VertexFrag.shader" t="Include" />
+          <e p="VertexFragDiffuse.shader" t="Include" />
+          <e p="Wall.shader" t="Include" />
+          <e p="Water.shader" t="Include" />
         </e>
       </e>
       <e p="hand-tracking-playground.sln" t="IncludeFlat" />
