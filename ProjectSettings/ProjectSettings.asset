@@ -166,7 +166,7 @@ PlayerSettings:
     Android: com.Spatial.HandTrackingPlayground
     Standalone: com.Spatial.HandTracking-Playground
   buildNumber: {}
-  AndroidBundleVersionCode: 1
+  AndroidBundleVersionCode: 3
   AndroidMinSdkVersion: 24
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 0

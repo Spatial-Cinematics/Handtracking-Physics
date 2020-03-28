@@ -5,6 +5,8 @@ using OculusSampleFramework;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum Handedness {None, Left, Right}
+
 public class HTGrabber : MonoBehaviour {
 
     private OVRHand hand;
@@ -15,16 +17,18 @@ public class HTGrabber : MonoBehaviour {
     OVRBone[] fingerTips;
     private OVRBone palm;
     
+    [SerializeField]
     private Text debugText;
     private OVRGrabbable closest;
     
     private float flex;
-    private Rigidbody grabbed;
+    public Rigidbody grabbed;
+
+    [SerializeField]
+    private HTGrabber otherGrabber;
     
     private void Start() {
         
-        debugText = GameObject.Find("DebugText").GetComponent<Text>();
-        debugText.text = "Text reference set!!!";
         hand = GetComponent<OVRHand>();
         skeleton = GetComponent<OVRSkeleton>();
         
@@ -106,7 +110,7 @@ public class HTGrabber : MonoBehaviour {
             Grab();
         }
 
-        if (grabbed && flex > .12f) {
+        if (grabbed && flex > .11f) {
             Drop();    
         }
 
@@ -137,13 +141,18 @@ public class HTGrabber : MonoBehaviour {
     }
 
     private void Grab() {
+        
+        grabbed = closest.GetComponent<Rigidbody>();
+        
+        if (grabbed && otherGrabber.grabbed == grabbed)
+            otherGrabber.Drop();
+            
         Debug.Log($"{grabbed} was grabbed!");
         closest.transform.parent = transform;
-        grabbed = closest.GetComponent<Rigidbody>();
         grabbed.isKinematic = true;
     }
 
-    private void Drop() {
+    public void Drop() {
         Debug.Log($"{grabbed} was dropped!");
 //        Debug.Break();
         grabbed.isKinematic = false;
