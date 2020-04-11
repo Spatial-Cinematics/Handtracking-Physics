@@ -43,7 +43,10 @@ public class Force {
     public void Draw() {
         Vector3 pos = transform.position;
         Vector3 dir = GetLocalDir();
-        drawer.Draw(pos, pos + (dir * Mag));
+        if (Mag > 0)
+            drawer.Draw(pos, pos + (dir * Mag));
+        else 
+            drawer.Draw(pos + (dir * Mathf.Abs(Mag)), pos + (dir * Mag));
     }
     
     private Vector3 GetLocalDir() {

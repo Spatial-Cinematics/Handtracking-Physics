@@ -11,7 +11,7 @@ public class HandPhysics : MonoBehaviour {
 
         foreach (Force force in forces) {
             Ray ray = force.ToRay();
-            if (Physics.Raycast(ray, out RaycastHit hit, force.Mag)) {
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Abs(force.Mag))) {
                 MeshRenderer mr = hit.transform.gameObject.GetComponent<MeshRenderer>();
                 if (mr) {
                     mr.material.color = force.color;
