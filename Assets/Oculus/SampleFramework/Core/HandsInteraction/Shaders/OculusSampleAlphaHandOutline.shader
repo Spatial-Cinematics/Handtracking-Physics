@@ -3,13 +3,13 @@
 Copyright (c) Facebook Technologies, LLC and its affiliates. All rights reserved.
 
 See SampleFramework license.txt for license terms.  Unless required by applicable law
-or agreed to in writing, the sample code is provided ìAS ISî WITHOUT WARRANTIES OR
+or agreed to in writing, the sample code is provided ‚ÄúAS IS‚Äù WITHOUT WARRANTIES OR
 CONDITIONS OF ANY KIND, either express or implied.  See the license for specific
 language governing permissions and limitations under the license.
 
 ************************************************************************************/
 
-Shader "Oculus Sample/Alpha Hand Outline" 
+Shader "Oculus Sample/Alpha HandPhysics Outline" 
 {
   Properties
   {
@@ -19,7 +19,7 @@ Shader "Oculus Sample/Alpha Hand Outline"
     _RimFactor ("Rim Factor", Range(0.01, 1.0)) = 0.65
     _FresnelPower ("Fresnel Power", Range(0.01,1.0)) = 0.16
 
-    _HandAlpha ("Hand Alpha", Range(0, 1)) = 1.0
+    _HandAlpha ("HandPhysics Alpha", Range(0, 1)) = 1.0
     _MinVisibleAlpha ("Minimum Visible Alpha", Range(0,1)) = 0.15
   }
   SubShader

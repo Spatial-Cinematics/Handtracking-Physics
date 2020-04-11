@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\clays\.Rider2019.2\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\clays\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_hand-tracking-playground.1784650531.00" t="ExcludeRecursive" />
-    <e p="C:\Users\clays\UnityProgs\Spatial\hand-tracking-playground" t="IncludeRecursive">
+    <e p="C:\Users\clays\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_hand-tracking-playground.-496216578.00" t="ExcludeRecursive" />
+    <e p="D:\UnityProgs\hand-tracking-playground" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
@@ -758,6 +758,7 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="Digit.cs" t="Include" />
           <e p="ExtensionMethods" t="Include">
             <e p="AnimatorExtensions.cs" t="Include" />
             <e p="ArrayExtensions.cs" t="Include" />
@@ -771,8 +772,9 @@
             <e p="TransformExtension.cs" t="Include" />
             <e p="Vector3Extensions.cs" t="Include" />
           </e>
-          <e p="HTBehaviour.cs" t="Include" />
-          <e p="HTGrabber.cs" t="Include" />
+          <e p="Force.cs" t="Include" />
+          <e p="HandPhysics.cs" t="Include" />
+          <e p="LineDrawer.cs" t="Include" />
         </e>
         <e p="Shaders" t="Include">
           <e p="Blending.shader" t="Include" />
