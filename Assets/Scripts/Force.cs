@@ -14,42 +14,30 @@ public class Force {
     public LocalDir axis  = LocalDir.Forward;
     public Color color;
     
-    private float mag = 1;
     private float lineWidth = 0.003f;
     private LineDrawer drawer;
     private Transform transform;
 
-    public float Mag {
-        get => mag;
-        set => mag = value;
-    }
+    public float Mag { get; private set; } = 1;
+    public Vector3 Origin { get; private set; }
+    public Vector3 Dir { get; private set; }
+    public Vector3 Point { get; private set; }
+
 
     public void Init(Transform t) {
-
-        Debug.Log($"Force {forceCount}: was init");
         forceCount++;
-        
         transform = t;
         drawer = new LineDrawer(lineWidth, color);
-        
     }
 
-    public Ray ToRay() {
-        Vector3 pos = transform.position;
-        Vector3 dir = GetLocalDir();
-        return new Ray(pos, dir);
+    public void Update(float newMag) {
+        Mag = newMag;
+        Origin = transform.position;
+        Dir = GetDirection();
+        Point = Origin + Dir * Mag;
     }
     
-    public void Draw() {
-        Vector3 pos = transform.position;
-        Vector3 dir = GetLocalDir();
-        if (Mag > 0)
-            drawer.Draw(pos, pos + (dir * Mag));
-        else 
-            drawer.Draw(pos + (dir * Mathf.Abs(Mag)), pos + (dir * Mag));
-    }
-    
-    private Vector3 GetLocalDir() {
+    private Vector3 GetDirection() {
         switch (axis) {
             case LocalDir.Forward:
                 return transform.right;
@@ -68,5 +56,9 @@ public class Force {
         }
     }
 
-
+    public void Draw() {
+        Vector3 dir = GetDirection();
+        drawer.Draw(Origin, Point);
+    }
+    
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5205081899043966619}
   - component: {fileID: 5205081899043966616}
   m_Layer: 0
-  m_Name: index_tip
+  m_Name: Digit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boneId: 20
+  flexRef: 0
   skeleton: {fileID: 0}
   forces:
   - axis: 0
@@ -52,5 +53,12 @@ MonoBehaviour:
     color: {r: 0, g: 0.764151, b: 0.005993432, a: 0}
   - axis: 2
     color: {r: 0.745283, g: 0.25663045, b: 0.26621196, a: 0}
-  worldPosRange: {x: 0.07, y: 0.16}
-  forceMagRange: {x: 0, y: 1}
+  - axis: 3
+    color: {r: 0.745283, g: 0.25663045, b: 1, a: 1}
+  - axis: 4
+    color: {r: 0.25490198, g: 0.74509805, b: 1, a: 0}
+  - axis: 5
+    color: {r: 0.25490198, g: 0.32680702, b: 0, a: 0}
+  worldPosRange: {x: 0.12, y: 0.15}
+  forceMagRange: {x: -0.1, y: 0.03}
+  clampWithinMagRange: 1

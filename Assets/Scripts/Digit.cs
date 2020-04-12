@@ -6,6 +6,7 @@ using UnityEngine;
 public class Digit : MonoBehaviour {
 
     public OVRSkeleton.BoneId boneId;
+    public OVRSkeleton.BoneId flexRef = OVRSkeleton.BoneId.Hand_Start;
     [SerializeField]
     private OVRSkeleton skeleton;
     [SerializeField] 
@@ -19,11 +20,11 @@ public class Digit : MonoBehaviour {
 
     private HandPhysics handPhysics;
     private LineDrawer line;
-    private Transform palm;
+    private Transform refTransform;
     
     private void Start() {
         handPhysics = skeleton.GetComponent<HandPhysics>();
-        palm = skeleton.Bones[(int) OVRSkeleton.BoneId.Hand_Start].Transform;
+        refTransform = skeleton.Bones[(int) flexRef].Transform;
         SetParent();
         InitForces();
     }
@@ -48,7 +49,7 @@ public class Digit : MonoBehaviour {
 
     private void UpdateForces() {
         foreach (Force force in forces) {
-            force.Mag = GetFlex();
+            force.Update(.05f);
         }
     }
     
@@ -56,7 +57,7 @@ public class Digit : MonoBehaviour {
         
         float flex;
         
-        float rawDist = transform.Distance(palm);
+        float rawDist = transform.Distance(refTransform);
         float normalized = rawDist.Remap(worldPosRange.x, worldPosRange.y, forceMagRange.x, forceMagRange.y);
         flex = clampWithinMagRange ? Mathf.Clamp(normalized, forceMagRange.x, forceMagRange.y) : normalized;
 
