@@ -668,6 +668,7 @@
               <e p="Unlit Transparent Color.shader" t="Include" />
             </e>
             <e p="Scripts" t="Include">
+              <e p="AvatarRig.cs" t="Include" />
               <e p="Composition" t="Include">
                 <e p="OVRCameraComposition.cs" t="Include" />
                 <e p="OVRComposition.cs" t="Include" />
@@ -775,6 +776,7 @@
           <e p="Force.cs" t="Include" />
           <e p="HandPhysics.cs" t="Include" />
           <e p="LineDrawer.cs" t="Include" />
+          <e p="VRAvatar.cs" t="Include" />
         </e>
         <e p="Shaders" t="Include">
           <e p="Blending.shader" t="Include" />
@@ -810,6 +812,21 @@
           <e p="VertexFragDiffuse.shader" t="Include" />
           <e p="Wall.shader" t="Include" />
           <e p="Water.shader" t="Include" />
+        </e>
+        <e p="Unity" t="Include">
+          <e p="ConstraintSamples" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="mParent.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Info" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="Editor" t="Include">
+                <e p="ReadmeEditor.cs" t="Include" />
+              </e>
+              <e p="Readme.cs" t="Include" />
+            </e>
+          </e>
         </e>
       </e>
       <e p="hand-tracking-playground.sln" t="IncludeFlat" />

@@ -93,7 +93,9 @@ public class OVRSkeleton : MonoBehaviour
 	private bool _updateRootScale = false;
 	[SerializeField]
 	private bool _enablePhysicsCapsules = false;
-
+	[SerializeField] 
+	private PhysicMaterial _physicMaterial;
+	
 	private GameObject _bonesGO;
 	private GameObject _bindPosesGO;
 	private GameObject _capsulesGO;
@@ -315,6 +317,7 @@ public class OVRSkeleton : MonoBehaviour
 
 			if (_updateRootScale)
 			{
+				Debug.Log($"{data.RootScale}");
 				transform.localScale = new Vector3(data.RootScale, data.RootScale, data.RootScale);
 			}
 

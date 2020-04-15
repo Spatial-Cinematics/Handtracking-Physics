@@ -15,8 +15,11 @@ using UnityEngine;
 
 namespace OculusSampleFramework
 {
-	public class HandPhysics : MonoBehaviour
-	{
+	public class HandPhysics : MonoBehaviour {
+
+		[SerializeField] 
+		private PhysicMaterial _physicsMaterial;
+		
 		// Stores all capsule colliders.
 		private CapsuleInfo[] _capsules;
 		private HandSkeleton _handSkeleton;
@@ -110,9 +113,10 @@ namespace OculusSampleFramework
 				var p1 = capsule.Points[1].FromFlippedZVector3f();
 				var heading = p1 - p0;
 				var distance = heading.magnitude;
-				capsuleCollider.radius = capsule.Radius;
+				capsuleCollider.radius = capsule.Radius / 2;
 				capsuleCollider.height = distance + capsule.Radius * 2.0f;
 				capsuleCollider.isTrigger = false;
+				capsuleCollider.sharedMaterial = _physicsMaterial;
 
 				capsuleCollider.direction = 0;
 				t.position = bone.position;
