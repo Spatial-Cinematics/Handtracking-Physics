@@ -668,7 +668,6 @@
               <e p="Unlit Transparent Color.shader" t="Include" />
             </e>
             <e p="Scripts" t="Include">
-              <e p="AvatarRig.cs" t="Include" />
               <e p="Composition" t="Include">
                 <e p="OVRCameraComposition.cs" t="Include" />
                 <e p="OVRComposition.cs" t="Include" />
@@ -759,6 +758,8 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="AvatarBuilder.cs" t="Include" />
+          <e p="AvatarRig.cs" t="Include" />
           <e p="Digit.cs" t="Include" />
           <e p="ExtensionMethods" t="Include">
             <e p="AnimatorExtensions.cs" t="Include" />
@@ -776,7 +777,6 @@
           <e p="Force.cs" t="Include" />
           <e p="HandPhysics.cs" t="Include" />
           <e p="LineDrawer.cs" t="Include" />
-          <e p="VRAvatar.cs" t="Include" />
         </e>
         <e p="Shaders" t="Include">
           <e p="Blending.shader" t="Include" />

@@ -26,7 +26,6 @@ public class Digit : MonoBehaviour {
         handPhysics = skeleton.GetComponent<HandPhysics>();
         refTransform = skeleton.Bones[(int) flexRef].Transform;
         SetParent();
-        InitForces();
     }
     
     private void SetParent() {
@@ -34,7 +33,11 @@ public class Digit : MonoBehaviour {
         transform.localPosition = Vector3.zero;
         transform.rotation = Quaternion.identity;
     }
-
+    
+    /// <summary>
+    /// None of these methods are used in this implementation. This scripts is just being used for tracking finger position
+    /// </summary>
+    
     private void InitForces() {
         foreach (Force force in forces) {
             force.Init(transform);
@@ -42,11 +45,6 @@ public class Digit : MonoBehaviour {
         }
     }
     
-    private void Update() {
-        UpdateForces();
-        DrawForces();
-    }
-
     private void UpdateForces() {
         foreach (Force force in forces) {
             force.Update(.05f);
