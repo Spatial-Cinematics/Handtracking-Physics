@@ -3,41 +3,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class AvatarMap {
+namespace Oculus.VR.Scripts {
+    [Serializable]
+    public class AvatarMap {
 
-    public Transform inputTransform;
-    public Rigidbody ikTarget;
-    public Vector3 trackingPositionOffset;
-    public Vector3 trackingRotationOffset;
+        public Transform inputTransform;
+        public Transform ikTarget;
+        public Rigidbody physicsBody;
+        public Transform physicsTarget;
+        public Vector3 trackingPositionOffset;
+        public Vector3 trackingRotationOffset;
+        public float strength = 1;
     
-    public void Map() {
-        ikTarget.transform.position = inputTransform.TransformPoint(trackingPositionOffset);
-        ikTarget.transform.rotation = inputTransform.rotation * Quaternion.Euler(trackingRotationOffset);
+        public void Map() { 
+            physicsBody.MovePosition(inputTransform.position + trackingPositionOffset);
+            physicsBody.MoveRotation(inputTransform.rotation);
+            ikTarget.position = (physicsTarget.position + trackingPositionOffset);
+            ikTarget.transform.rotation = physicsTarget.rotation * Quaternion.Euler(trackingRotationOffset);
+        }
+
     }
 
-}
-
-public class AvatarRig : MonoBehaviour {
+    public class AvatarRig : MonoBehaviour {
 
     
-    public Transform headConstraint;
-    public Vector3 headBodyOffset;
+        public Transform headConstraint;
+        public Vector3 headBodyOffset;
 
-    public AvatarMap head, leftHand, rightHand;
+        public AvatarMap head, leftHand, rightHand;
     
-    private void Start() {
-        headBodyOffset = transform.position - headConstraint.position;
-    }
+        private void Start() {
+            headBodyOffset = transform.position - headConstraint.position;
+        }
 
-    private void Update() {
+        private void FixedUpdate() {
 
-        transform.position = headConstraint.position + headBodyOffset;
-        transform.forward = Vector3.ProjectOnPlane(headConstraint.forward, Vector3.up).normalized;
+            transform.position = headConstraint.position + headBodyOffset;
+            transform.forward = Vector3.ProjectOnPlane(headConstraint.forward, Vector3.up).normalized;
         
-        head.Map();
-        leftHand.Map();
-        rightHand.Map();
+            head.Map();
+            leftHand.Map();
+            rightHand.Map();
         
+        }
     }
 }

@@ -317,7 +317,7 @@ public class OVRSkeleton : MonoBehaviour
 
 			if (_updateRootScale)
 			{
-				Debug.Log($"Hand Scale: {data.RootScale}");
+//				Debug.Log($"Hand Scale: {data.RootScale}");
 				transform.localScale = new Vector3(data.RootScale, data.RootScale, data.RootScale);
 			}
 
