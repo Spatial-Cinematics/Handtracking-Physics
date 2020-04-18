@@ -86,7 +86,7 @@ public class OVRLipSyncSequence : ScriptableObject
             ? OVRLipSync.CreateContextWithModelFile(
                 ref context,
                 OVRLipSync.ContextProviders.Enhanced,
-                Path.Combine(Application.dataPath, "Oculus/LipSync/Assets/OfflineModel/ovrlipsync_offline_model.pb"))
+                Path.Combine(Application.dataPath, "Oculus/LipSync/Assets/OfflineModel/ovrlipsync_offline_model.physicsAnchor"))
             : OVRLipSync.CreateContext(ref context, OVRLipSync.ContextProviders.Enhanced);
 
         if (result != OVRLipSync.Result.Success)

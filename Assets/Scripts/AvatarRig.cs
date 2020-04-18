@@ -8,17 +8,17 @@ public class AvatarMap {
 
     public Transform inputTransform;
     public Transform ikTarget;
-    public Rigidbody physicsBody;
-    public Transform physicsTarget;
+    public Rigidbody physicsAnchor; //simulated physics rigidbody attached to anchor by joint. Ik targets follow this
+    public Transform physicsBody; //kinematic parent and joint component object for physics body
     public Vector3 trackingPositionOffset;
     public Vector3 trackingRotationOffset;
     public float strength = 1;
     
     public void Map() { 
-        physicsBody.MovePosition(inputTransform.position + trackingPositionOffset);
-        physicsBody.MoveRotation(inputTransform.rotation);
-        ikTarget.position = (physicsTarget.position + trackingPositionOffset);
-        ikTarget.transform.rotation = physicsTarget.rotation * Quaternion.Euler(trackingRotationOffset);
+        physicsAnchor.MovePosition(inputTransform.position + trackingPositionOffset);
+        physicsAnchor.MoveRotation(inputTransform.rotation);
+        ikTarget.position = (physicsBody.position + trackingPositionOffset);
+        ikTarget.transform.rotation = physicsBody.rotation * Quaternion.Euler(trackingRotationOffset);
     }
 
 }
@@ -29,7 +29,7 @@ public class AvatarRig : MonoBehaviour {
     public Vector3 headBodyOffset;
 
     public AvatarMap head, leftHand, rightHand;
-    public List<AvatarMap> leftFingers;
+    public List<AvatarMap> leftFingers, rightFingers;
         
     private void Start() {
         headBodyOffset = transform.position - headConstraint.position;
@@ -43,9 +43,10 @@ public class AvatarRig : MonoBehaviour {
         head.Map();
         leftHand.Map();
         rightHand.Map();
-        foreach (AvatarMap map in leftFingers) {
-            map.Map();
-        }
+        foreach (AvatarMap fingerMap in leftFingers) 
+            fingerMap.Map();
+        foreach (AvatarMap fingerMap in rightFingers) 
+            fingerMap.Map();
         
     }
 }
