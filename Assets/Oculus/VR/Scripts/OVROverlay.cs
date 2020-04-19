@@ -147,6 +147,9 @@ public class OVROverlay : MonoBehaviour
 	[Tooltip("The noDepthBufferTesting will stop layer's depth buffer compositing even if the engine has \"Shared Depth Buffer\" enabled")]
 	public bool noDepthBufferTesting = false;
 
+	//Format corresponding to the source texture for this layer. sRGB by default, but can be modified if necessary
+	public OVRPlugin.EyeTextureFormat layerTextureFormat = OVRPlugin.EyeTextureFormat.R8G8B8A8_sRGB;
+
 	/// <summary>
 	/// Specify overlay's shape
 	/// </summary>
@@ -521,7 +524,7 @@ public class OVROverlay : MonoBehaviour
 		}
 
 		OVRPlugin.LayerDesc newDesc = new OVRPlugin.LayerDesc() {
-			Format = OVRPlugin.EyeTextureFormat.R8G8B8A8_sRGB,
+			Format = layerTextureFormat,
 			LayerFlags = isExternalSurface ? 0 : (int)OVRPlugin.LayerFlags.TextureOriginAtBottomLeft,
 			Layout = layout,
 			MipLevels = 1,

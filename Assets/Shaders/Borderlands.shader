@@ -5,8 +5,10 @@
         _Color ("Color", Color) = (1,1,1,1)
         _MainTex ("Main Texture", 2D) = "white" {}
         _RampTex ("Ramp Texture", 2D) = "white" {}
+        _Normal ("Normal Map", 2D) = "white" {}
+        _normInt ("Normal Intensity", Range(0,1)) = 1
         _OutlineColor("Outline Color", Color) = (0,0,0,0)
-        _OutlinePower("Outline Power", Range (.002 , .1)) = .01
+        _OutlinePower("Outline Power", Range (.0002 , .02)) = .01
     }
     SubShader
     {
@@ -45,6 +47,8 @@
         fixed4 _Color;
         sampler2D _MainTex;
         sampler2D _RampTex;
+        sampler2D _Normal;
+        half _normInt;
 
         half4 LightingToonRamp (SurfaceOutput s, half3 lightDir, half atten){
             float diff = dot (s.Normal, lightDir);
@@ -67,6 +71,8 @@
         {
             fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
             o.Albedo = c.rgb;
+            o.Normal = UnpackNormal(tex2D(_Normal, IN.uv_MainTex));
+            o.Normal *= float3(_normInt, _normInt, 1);
         }
         ENDCG
     }

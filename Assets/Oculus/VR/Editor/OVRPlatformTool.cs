@@ -438,16 +438,25 @@ namespace Assets.Oculus.VR.Editor
 				updateThread.Start();
 			}
 
-			var thread = new Thread(delegate () {
-				// Wait for update process to finish before starting upload process
-				while (activeProcess)
+			string uploadCommand;
+			if (genUploadCommand(targetPlatform, out uploadCommand))
+			{
+				var thread = new Thread(delegate ()
 				{
-					Thread.Sleep(100);
-				}
-				retryCount = 0;
-				Command(targetPlatform, dataPath);
-			});
-			thread.Start();
+					// Wait for update process to finish before starting upload process
+					while (activeProcess)
+					{
+						Thread.Sleep(100);
+					}
+					retryCount = 0;
+					Command(targetPlatform, dataPath, uploadCommand);
+				});
+				thread.Start();
+			}
+			else
+			{
+				UnityEngine.Debug.LogError("Failed to generated upload command.");
+			}
 		}
 
 		private static string CheckForPlatformUtil(string dataPath)
@@ -587,51 +596,47 @@ namespace Assets.Oculus.VR.Editor
 			}
 		}
 
-		static void Command(TargetPlatform targetPlatform, string dataPath)
+		static void Command(TargetPlatform targetPlatform, string dataPath, string uploadCommand)
 		{
 			string platformUtilPath = CheckForPlatformUtil(dataPath);
 
-			string args;
-			if (genUploadCommand(targetPlatform, out args))
-			{
-				activeProcess = true;
-				InitializePlatformUtilProcess(platformUtilPath, args);
+			activeProcess = true;
+			InitializePlatformUtilProcess(platformUtilPath, uploadCommand);
 
-				ovrPlatUtilProcess.Exited += new EventHandler(
-					(s, e) =>
-					{
-						activeProcess = false;
-					}
-				);
+			ovrPlatUtilProcess.Exited += new EventHandler(
+				(s, e) =>
+				{
+					activeProcess = false;
+				}
+			);
 
-				ovrPlatUtilProcess.OutputDataReceived += new DataReceivedEventHandler(
-					(s, e) =>
-					{
-						if (e.Data != null && e.Data.Length != 0 && !e.Data.Contains("\u001b"))
-						{
-							OVRPlatformTool.log += e.Data + "\n";
-						}
-					}
-				);
-				ovrPlatUtilProcess.ErrorDataReceived += new DataReceivedEventHandler(
-					(s, e) =>
+			ovrPlatUtilProcess.OutputDataReceived += new DataReceivedEventHandler(
+				(s, e) =>
+				{
+					if (e.Data != null && e.Data.Length != 0 && !e.Data.Contains("\u001b"))
 					{
 						OVRPlatformTool.log += e.Data + "\n";
 					}
-				);
-
-				try
-				{
-					ovrPlatUtilProcess.Start();
-					ovrPlatUtilProcess.BeginOutputReadLine();
-					ovrPlatUtilProcess.BeginErrorReadLine();
 				}
-				catch
+			);
+			ovrPlatUtilProcess.ErrorDataReceived += new DataReceivedEventHandler(
+				(s, e) =>
 				{
-					if (ThrowPlatformUtilStartupError(platformUtilPath))
-					{
-						Command(targetPlatform, dataPath);
-					}
+					OVRPlatformTool.log += e.Data + "\n";
+				}
+			);
+
+			try
+			{
+				ovrPlatUtilProcess.Start();
+				ovrPlatUtilProcess.BeginOutputReadLine();
+				ovrPlatUtilProcess.BeginErrorReadLine();
+			}
+			catch
+			{
+				if (ThrowPlatformUtilStartupError(platformUtilPath))
+				{
+					Command(targetPlatform, dataPath, uploadCommand);
 				}
 			}
 		}

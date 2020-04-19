@@ -5,7 +5,7 @@ using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 
-[RequireComponent(typeof(AvatarRig))]
+[RequireComponent(typeof(PhysicsHand))]
 public class AvatarBuilder : MonoBehaviour {
 
     public Transform avatarRoot;
@@ -20,7 +20,7 @@ public class AvatarBuilder : MonoBehaviour {
     private float colliderHeight = .2f;
     private Transform physicsBodyRoot;
     private const string bonePrefix = "mixamorig:", physicsAnchorPrefix = "pa:", physicsBodyPrefix = "physicsAnchor:";
-    private AvatarRig _avatarRig;
+    private PhysicsHand _physicsHand;
 
     enum BoneRefKeys {
         LeftHand, RightHand, Head
@@ -31,7 +31,7 @@ public class AvatarBuilder : MonoBehaviour {
     
     public void Generate() {
 
-        _avatarRig = GetComponent<AvatarRig>();
+        _physicsHand = GetComponent<PhysicsHand>();
         
         if (transform.parent.Find(physicsRootName))
             physicsBodyRoot = transform.parent.Find(physicsRootName).transform;
@@ -62,21 +62,21 @@ public class AvatarBuilder : MonoBehaviour {
         InitPhysicsAnchor();
         InitPhysicsBody();
 
-        switch (baseName) {
-            case "Head":
-                _avatarRig.head.physicsAnchor = pa.GetComponent<Rigidbody>();
-                _avatarRig.head.physicsBody = pb.transform;
-                break;
-            case "RightHand":
-                _avatarRig.rightHand.physicsAnchor = pa.GetComponent<Rigidbody>();
-                _avatarRig.rightHand.physicsBody = pb.transform;
-                break;
-            case "LeftHand":
-                _avatarRig.leftHand.physicsAnchor = pa.GetComponent<Rigidbody>();
-                _avatarRig.leftHand.physicsBody = pb.transform;
-                break;
+//        switch (baseName) {
+//            case "Head":
+//                _physicsHand.head.physicsAnchor = pa.GetComponent<Rigidbody>();
+//                _physicsHand.head.physicsBody = pb.transform;
+//                break;
+//            case "RightHand":
+//                _physicsHand.rightHand.physicsAnchor = pa.GetComponent<Rigidbody>();
+//                _physicsHand.rightHand.physicsBody = pb.transform;
+//                break;
+//            case "LeftHand":
+//                _physicsHand.leftHand.physicsAnchor = pa.GetComponent<Rigidbody>();
+//                _physicsHand.leftHand.physicsBody = pb.transform;
+//                break;
             
-        }
+//        }
         
         CapsuleCollider col = pb.AddComponent<CapsuleCollider>();
         col.material = physicsMaterial;
@@ -93,6 +93,7 @@ public class AvatarBuilder : MonoBehaviour {
 
         return pa;
 
+        
         //kinematic parent and joint component object for physics body
         void InitPhysicsAnchor() {
             pa = new GameObject(physicsAnchorPrefix + baseName);
@@ -102,10 +103,11 @@ public class AvatarBuilder : MonoBehaviour {
             Rigidbody rb = pa.AddComponent<Rigidbody>();
             rb.interpolation = RigidbodyInterpolation.Interpolate;
             rb.isKinematic = true;
-            SpringJoint joint = pa.AddComponent<SpringJoint>();
+//            SpringJoint joint = pa.AddComponent<SpringJoint>();
+            FixedJoint joint = pa.AddComponent<FixedJoint>();
             joint.connectedBody = parent.GetComponent<Rigidbody>();
-            joint.spring = 20;
-            joint.damper = 1;
+//            joint.spring = 20;
+//            joint.damper = anchorDamp;
         }
         
         //simulated physics rigidbody attached to anchor by joint. Ik targets follow this
@@ -117,10 +119,10 @@ public class AvatarBuilder : MonoBehaviour {
             rb.useGravity = false;
             rb.isKinematic = false;
             rb.interpolation = RigidbodyInterpolation.Interpolate;
-//            ConfigurableJoint joint = pb.AddComponent<ConfigurableJoint>();
-            SpringJoint joint = pb.AddComponent<SpringJoint>();
+            FixedJoint joint = pb.AddComponent<FixedJoint>();
+//            SpringJoint joint = pb.AddComponent<SpringJoint>();
             joint.connectedBody = pa.GetComponent<Rigidbody>();
-            joint.damper = 1;
+//            joint.damper = springDamp;
 
         }
 
@@ -134,6 +136,8 @@ public class AvatarBuilder : MonoBehaviour {
 
     }
 
+    [SerializeField, Range(0, 100)] private float springDamp = 10;
+    [SerializeField, Range(0, 100)] private float anchorDamp = 20;
 }
 
 [CustomEditor(typeof(AvatarBuilder))]

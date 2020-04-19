@@ -17,9 +17,6 @@ namespace OculusSampleFramework
 {
 	public class HandPhysics : MonoBehaviour {
 
-		[SerializeField] 
-		private PhysicMaterial _physicsMaterial;
-		
 		// Stores all capsule colliders.
 		private CapsuleInfo[] _capsules;
 		private HandSkeleton _handSkeleton;
@@ -116,7 +113,6 @@ namespace OculusSampleFramework
 				capsuleCollider.radius = capsule.Radius / 2;
 				capsuleCollider.height = distance + capsule.Radius * 2.0f;
 				capsuleCollider.isTrigger = false;
-				capsuleCollider.sharedMaterial = _physicsMaterial;
 
 				capsuleCollider.direction = 0;
 				t.position = bone.position;

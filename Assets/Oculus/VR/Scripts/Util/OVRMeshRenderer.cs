@@ -92,7 +92,6 @@ public class OVRMeshRenderer : MonoBehaviour
 		}
 
 		Initialize();
-		
 	}
 
 	private void Initialize()
@@ -144,7 +143,29 @@ public class OVRMeshRenderer : MonoBehaviour
 
 				shouldRender = data.IsDataValid && data.IsDataHighConfidence;
 			}
-			
+
+			if (_confidenceBehavior == ConfidenceBehavior.ToggleRenderer)
+			{
+				if (_skinnedMeshRenderer != null && _skinnedMeshRenderer.enabled != shouldRender)
+				{
+					_skinnedMeshRenderer.enabled = shouldRender;
+				}
+			}
+
+			if (_systemGestureBehavior == SystemGestureBehavior.SwapMaterial)
+			{
+				if (_skinnedMeshRenderer != null)
+				{
+					if (ShouldUseSystemGestureMaterial && _systemGestureMaterial != null && _skinnedMeshRenderer.sharedMaterial != _systemGestureMaterial)
+					{
+						_skinnedMeshRenderer.sharedMaterial = _systemGestureMaterial;
+					}
+					else if (!ShouldUseSystemGestureMaterial && _originalMaterial != null && _skinnedMeshRenderer.sharedMaterial != _originalMaterial)
+					{
+						_skinnedMeshRenderer.sharedMaterial = _originalMaterial;
+					}
+				}
+			}
 		}
 	}
 }

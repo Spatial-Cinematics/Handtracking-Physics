@@ -93,9 +93,7 @@ public class OVRSkeleton : MonoBehaviour
 	private bool _updateRootScale = false;
 	[SerializeField]
 	private bool _enablePhysicsCapsules = false;
-	[SerializeField] 
-	private PhysicMaterial _physicMaterial;
-	
+
 	private GameObject _bonesGO;
 	private GameObject _bindPosesGO;
 	private GameObject _capsulesGO;
@@ -294,19 +292,19 @@ public class OVRSkeleton : MonoBehaviour
 
 	private void Update()
 	{
-		if (!IsInitialized || _dataProvider == null)
-		{
-			IsDataValid = false;
-			IsDataHighConfidence = false;
-
-			return;
-		}
+//		if (!IsInitialized || _dataProvider == null)
+//		{
+//			IsDataValid = false;
+//			IsDataHighConfidence = false;
+//
+//			return;
+//		}
 
 		var data = _dataProvider.GetSkeletonPoseData();
 
 		IsDataValid = data.IsDataValid;
-		if (data.IsDataValid)
-		{
+//		if (data.IsDataValid)
+//		{
 			IsDataHighConfidence = data.IsDataHighConfidence;
 
 			if (_updateRootPose)
@@ -317,7 +315,6 @@ public class OVRSkeleton : MonoBehaviour
 
 			if (_updateRootScale)
 			{
-//				Debug.Log($"Hand Scale: {data.RootScale}");
 				transform.localScale = new Vector3(data.RootScale, data.RootScale, data.RootScale);
 			}
 
@@ -332,56 +329,21 @@ public class OVRSkeleton : MonoBehaviour
 					}
 				}
 			}
-		}
+//		}
 	}
 
 	private void FixedUpdate()
 	{
-		if (!IsInitialized || _dataProvider == null)
-		{
-			IsDataValid = false;
-			IsDataHighConfidence = false;
-
-			return;
-		}
-
-		Update();
-
-		if (_enablePhysicsCapsules)
-		{
-			var data = _dataProvider.GetSkeletonPoseData();
-
-			IsDataValid = data.IsDataValid;
-			IsDataHighConfidence = data.IsDataHighConfidence;
-
-			for (int i = 0; i < _capsules.Count; ++i)
-			{
+		if (_enablePhysicsCapsules) {
+			
+			for (int i = 0; i < _capsules.Count; ++i) {
+				
 				OVRBoneCapsule capsule = _capsules[i];
-				var capsuleGO = capsule.CapsuleRigidbody.gameObject;
+				Transform bone = _bones[(int)capsule.BoneIndex].Transform;
 
-				if (data.IsDataValid && data.IsDataHighConfidence)
-				{
-					Transform bone = _bones[(int)capsule.BoneIndex].Transform;
-
-					if (capsuleGO.activeSelf)
-					{
-						capsule.CapsuleRigidbody.MovePosition(bone.position);
-						capsule.CapsuleRigidbody.MoveRotation(bone.rotation);
-					}
-					else
-					{
-						capsuleGO.SetActive(true);
-						capsule.CapsuleRigidbody.position = bone.position;
-						capsule.CapsuleRigidbody.rotation = bone.rotation;
-					}
-				}
-				else
-				{
-					if (capsuleGO.activeSelf)
-					{
-						capsuleGO.SetActive(false);
-					}
-				}
+				capsule.CapsuleRigidbody.MovePosition(bone.position);
+				capsule.CapsuleRigidbody.MoveRotation(bone.rotation);
+				
 			}
 		}
 	}

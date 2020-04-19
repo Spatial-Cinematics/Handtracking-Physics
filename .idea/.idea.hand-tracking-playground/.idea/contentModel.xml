@@ -309,6 +309,7 @@
                 <e p="NetSyncSession.cs" t="Include" />
                 <e p="NetSyncSessionsChangedNotification.cs" t="Include" />
                 <e p="NetSyncSetSessionPropertyResult.cs" t="Include" />
+                <e p="NetSyncVoipAttenuationValue.cs" t="Include" />
                 <e p="NetworkingPeer.cs" t="Include" />
                 <e p="OrgScopedID.cs" t="Include" />
                 <e p="Party.cs" t="Include" />
@@ -679,10 +680,12 @@
               <e p="Editor" t="Include">
                 <e p="Oculus.VR.Scripts.Editor.asmdef" t="Include" />
                 <e p="OVRCustomSkeletonEditor.cs" t="Include" />
+                <e p="OVREditorUtil.cs" t="Include" />
                 <e p="OVRManagerEditor.cs" t="Include" />
                 <e p="OVROverlayDestRectEditor.shader" t="Include" />
                 <e p="OVROverlayEditor.cs" t="Include" />
                 <e p="OVROverlaySrcRectEditor.shader" t="Include" />
+                <e p="OVRProjectConfigEditor.cs" t="Include" />
               </e>
               <e p="OVRBoundary.cs" t="Include" />
               <e p="OVRCameraRig.cs" t="Include" />
@@ -743,11 +746,13 @@
                 <e p="OVRSkeleton.cs" t="Include" />
                 <e p="OVRSkeletonRenderer.cs" t="Include" />
                 <e p="OVRSystemPerfMetrics.cs" t="Include" />
+                <e p="OVRVignette.cs" t="Include" />
                 <e p="OVRWaitCursor.cs" t="Include" />
               </e>
             </e>
             <e p="Shaders" t="Include">
               <e p="OVRColorRampAlpha.shader" t="Include" />
+              <e p="OVRVignette.shader" t="Include" />
               <e p="Unlit Crosshair.shader" t="Include" />
             </e>
             <e p="ThirdParty" t="Include">
@@ -759,8 +764,6 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="AvatarBuilder.cs" t="Include" />
-          <e p="AvatarRig.cs" t="Include" />
-          <e p="Digit.cs" t="Include" />
           <e p="ExtensionMethods" t="Include">
             <e p="AnimatorExtensions.cs" t="Include" />
             <e p="ArrayExtensions.cs" t="Include" />
@@ -775,8 +778,10 @@
             <e p="Vector3Extensions.cs" t="Include" />
           </e>
           <e p="Force.cs" t="Include" />
-          <e p="HandPhysics.cs" t="Include" />
+          <e p="HandPhysicsGenerator.cs" t="Include" />
+          <e p="HandTracker.cs" t="Include" />
           <e p="LineDrawer.cs" t="Include" />
+          <e p="PhysicsHand.cs" t="Include" />
         </e>
         <e p="Shaders" t="Include">
           <e p="Blending.shader" t="Include" />
@@ -798,7 +803,6 @@
           <e p="Outline.shader" t="Include" />
           <e p="PBR.shader" t="Include" />
           <e p="Phong.shader" t="Include" />
-          <e p="PhysicsHand.shader" t="Include" />
           <e p="Plasma.shader" t="Include" />
           <e p="PropertiesPractice.shader" t="Include" />
           <e p="Rim.shader" t="Include" />
