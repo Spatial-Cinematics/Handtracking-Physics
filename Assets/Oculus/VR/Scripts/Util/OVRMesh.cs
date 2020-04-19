@@ -34,6 +34,8 @@ public class OVRMesh : MonoBehaviour
 	}
 
 	[SerializeField]
+	private bool render;
+	[SerializeField]
 	private IOVRMeshDataProvider _dataProvider;
 	[SerializeField]
 	private MeshType _meshType = MeshType.None;
