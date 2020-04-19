@@ -26,7 +26,7 @@ public class HandPhysicsGenerator : MonoBehaviour {
 [CustomEditor(typeof(HandPhysicsGenerator))]
 public class HandPhysicsGeneratorEditor : Editor {
     public override void OnInspectorGUI() {
-        if (GUILayout.Button("Generate Hand Physics")) {
+        if (GUILayout.Button("GetReferences Hand Physics")) {
             ((HandPhysicsGenerator)target)?.Generate();
         }
         DrawDefaultInspector();

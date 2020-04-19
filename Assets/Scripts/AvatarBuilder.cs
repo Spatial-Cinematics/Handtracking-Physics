@@ -144,7 +144,7 @@ public class AvatarBuilder : MonoBehaviour {
 public class AvatarBuilderEditor : Editor {
     public override void OnInspectorGUI() {
         DrawDefaultInspector();
-        if (GUILayout.Button("Generate Physics Capsules")) {
+        if (GUILayout.Button("GetReferences Physics Capsules")) {
             ((AvatarBuilder)target)?.Generate();
         }
     }

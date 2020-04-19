@@ -7,44 +7,26 @@ using UnityEngine;
 public class PhysicsBodyMap {
 
     public Transform inputTransform;
-    public Rigidbody physicsAnchor; //simulated physics rigidbody attached to anchor by joint. Ik targets follow this
-    public Transform physicsBody; //kinematic parent and joint component object for physics body
     public Transform ikTarget;
-    public Vector3 trackingPositionOffset;
+    public float trackingPositionOffset;
     public Vector3 trackingRotationOffset;
-    public float strength = 1;
     
-    public void Map() { 
-        physicsAnchor.MovePosition(inputTransform.position + trackingPositionOffset);
-        physicsAnchor.MoveRotation(inputTransform.rotation * Quaternion.Euler(trackingRotationOffset));
-        ikTarget.position = (physicsBody.position);
-        ikTarget.transform.rotation = physicsBody.rotation;
+    public void Map() {
+        ikTarget.position = inputTransform.position + inputTransform.right * trackingPositionOffset;
+        ikTarget.rotation = inputTransform.rotation * Quaternion.Euler(trackingRotationOffset);
     }
 
 }
 
 public class PhysicsHand : MonoBehaviour {
 
-//    public Transform wristConstraint;
-//    public Vector3 wristOffset;
-
     public PhysicsBodyMap index, middle, pinky, ring, thumb;
-        
-    private void Start() {
-//        wristOffset = transform.position - wristConstraint.position;
-    }
 
-    private void Update() {
-
-//        transform.position = wristConstraint.position + wristOffset;
-//        transform.rotation = wristConstraint.rotation;
-//        transform.forward = Vector3.ProjectOnPlane(wristConstraint.forward, Vector3.up).normalized;
-        
-        index.Map();
+    private void FixedUpdate() {
+    index.Map();
         middle.Map();
         pinky.Map();
         ring.Map();
         thumb.Map();
-
     }
 }

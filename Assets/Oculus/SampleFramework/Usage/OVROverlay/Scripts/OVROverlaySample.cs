@@ -314,7 +314,7 @@ namespace OculusSampleFramework
             Debug.Log("Finished " + numToPrint + " Loops");
             Vector3 playerPos = mainCamera.transform.position;
             playerPos.y = 0.5f;
-            // Generate a bunch of blocks, "blocking" the mainthread ;)
+            // GetReferences a bunch of blocks, "blocking" the mainthread ;)
             for (int j = 0; j < numLevels; j++)
             {
                 for (var i = 0; i < numObjectsPerLevel; i++)

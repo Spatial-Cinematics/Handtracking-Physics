@@ -64,7 +64,7 @@ public class CharacterCapsule : MonoBehaviour
 
         var vector = new Vector3(1,0,0);
 
-        // Generate the mesh
+        // GetReferences the mesh
         var topOffset = new Vector3(0, _height/2.0f - _radius, 0);
         var bottomOffset = new Vector3(0, _radius - _height/2.0f, 0);
 

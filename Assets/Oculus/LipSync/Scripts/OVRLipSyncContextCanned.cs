@@ -34,7 +34,7 @@ using UnityEngine;
 /// </summary>
 public class OVRLipSyncContextCanned : OVRLipSyncContextBase
 {
-    [Tooltip("Pre-computed viseme sequence asset. Compute from audio in Unity with Tools -> Oculus -> Generate Lip Sync Assets.")]
+    [Tooltip("Pre-computed viseme sequence asset. Compute from audio in Unity with Tools -> Oculus -> GetReferences Lip Sync Assets.")]
     public OVRLipSyncSequence currentSequence;
 
     /// <summary>

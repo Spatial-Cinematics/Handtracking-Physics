@@ -124,13 +124,13 @@ class OVRLipSyncToolLoader
 
 class OVRLipSyncTool
 {
-    [MenuItem("Oculus/Lip Sync/Generate Lip Sync Assets", false, 2000000)]
+    [MenuItem("Oculus/Lip Sync/GetReferences Lip Sync Assets", false, 2000000)]
     static void GenerateLipSyncAssets()
     {
         GenerateLipSyncAssetsInternal(false);
     }
 
-    [MenuItem("Oculus/Lip Sync/Generate Lip Sync Assets With Offline Model", false, 2500000)]
+    [MenuItem("Oculus/Lip Sync/GetReferences Lip Sync Assets With Offline Model", false, 2500000)]
     static void GenerateLipSyncAssetsOffline()
     {
         GenerateLipSyncAssetsInternal(true);
