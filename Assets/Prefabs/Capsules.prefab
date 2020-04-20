@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 5309541535851552585}
   - component: {fileID: 8499747570161970229}
   - component: {fileID: 574161497667831981}
-  - component: {fileID: 1203259866058332372}
+  - component: {fileID: 2926349673486619845}
   m_Layer: 0
   m_Name: Hand_Start_CapsuleCollider
   m_TagString: Untagged
@@ -103,15 +103,15 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574161497410388090}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &1203259866058332372
+  m_CollisionDetection: 2
+--- !u!138 &2926349673486619845
 FixedJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -290,7 +290,7 @@ GameObject:
   - component: {fileID: 3056300731040255385}
   - component: {fileID: 659095305658186204}
   - component: {fileID: 922600586451356612}
-  - component: {fileID: 1366663205571585649}
+  - component: {fileID: 5273152236752452583}
   m_Layer: 0
   m_Name: Hand_Pinky2_CapsuleCollider
   m_TagString: Untagged
@@ -334,15 +334,15 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 922600586735043347}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &1366663205571585649
+  m_CollisionDetection: 2
+--- !u!138 &5273152236752452583
 FixedJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 703129073171719246}
   - component: {fileID: 7146582729167788908}
   - component: {fileID: 1024603744629018385}
-  - component: {fileID: 575832609369215596}
+  - component: {fileID: 5776736451000642803}
   m_Layer: 0
   m_Name: Hand_Ring3_CapsuleCollider
   m_TagString: Untagged
@@ -411,15 +411,15 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024603744371541982}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &575832609369215596
+  m_CollisionDetection: 2
+--- !u!138 &5776736451000642803
 FixedJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 7675911754335676079}
   - component: {fileID: 7603710450182181012}
   - component: {fileID: 2370476960452190620}
-  - component: {fileID: 281890244814890688}
+  - component: {fileID: 3281082760778422645}
   m_Layer: 0
   m_Name: Hand_Ring1_CapsuleCollider
   m_TagString: Untagged
@@ -584,15 +584,15 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2370476960199010635}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &281890244814890688
+  m_CollisionDetection: 2
+--- !u!138 &3281082760778422645
 FixedJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -665,7 +665,7 @@ GameObject:
   - component: {fileID: 374332920160003341}
   - component: {fileID: 752129551804377277}
   - component: {fileID: 2450700722473090506}
-  - component: {fileID: 5487123618789527698}
+  - component: {fileID: 2230702694397616120}
   m_Layer: 0
   m_Name: Hand_Middle2_CapsuleCollider
   m_TagString: Untagged
@@ -709,15 +709,15 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2450700722193691929}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &5487123618789527698
+  m_CollisionDetection: 2
+--- !u!138 &2230702694397616120
 FixedJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -982,7 +982,7 @@ GameObject:
   - component: {fileID: 6069009469761394101}
   - component: {fileID: 7207874812292101385}
   - component: {fileID: 3769499652980038267}
-  - component: {fileID: 6526167391714617623}
+  - component: {fileID: 3832903318345541633}
   m_Layer: 0
   m_Name: Hand_Thumb3_CapsuleCollider
   m_TagString: Untagged
@@ -1026,15 +1026,15 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3769499652701655720}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &6526167391714617623
+  m_CollisionDetection: 2
+--- !u!138 &3832903318345541633
 FixedJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1107,7 +1107,7 @@ GameObject:
   - component: {fileID: 5053990281579048119}
   - component: {fileID: 7099710344336056168}
   - component: {fileID: 4135291056598886843}
-  - component: {fileID: 8423985758239987520}
+  - component: {fileID: 5453294732775293668}
   m_Layer: 0
   m_Name: Hand_Pinky3_CapsuleCollider
   m_TagString: Untagged
@@ -1151,15 +1151,15 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4135291056868942184}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &8423985758239987520
+  m_CollisionDetection: 2
+--- !u!138 &5453294732775293668
 FixedJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1184,7 +1184,7 @@ GameObject:
   - component: {fileID: 6689659795459570652}
   - component: {fileID: 4023747858813936931}
   - component: {fileID: 4467903584961885154}
-  - component: {fileID: 4942333770615236242}
+  - component: {fileID: 525131457951510426}
   m_Layer: 0
   m_Name: Hand_Middle1_CapsuleCollider
   m_TagString: Untagged
@@ -1228,15 +1228,15 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4467903584699169585}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &4942333770615236242
+  m_CollisionDetection: 2
+--- !u!138 &525131457951510426
 FixedJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1309,7 +1309,7 @@ GameObject:
   - component: {fileID: 5412314669118762520}
   - component: {fileID: 631271580970851205}
   - component: {fileID: 5038270857194628893}
-  - component: {fileID: 4273923141581338432}
+  - component: {fileID: 9159566626569592214}
   m_Layer: 0
   m_Name: Hand_Pinky1_CapsuleCollider
   m_TagString: Untagged
@@ -1353,15 +1353,15 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5038270856931913674}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &4273923141581338432
+  m_CollisionDetection: 2
+--- !u!138 &9159566626569592214
 FixedJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1482,7 +1482,7 @@ GameObject:
   - component: {fileID: 2873283634729292755}
   - component: {fileID: 4032393798588107490}
   - component: {fileID: 6395008722863488108}
-  - component: {fileID: 7226515634461009886}
+  - component: {fileID: 2747567089097660849}
   m_Layer: 0
   m_Name: Hand_Thumb2_CapsuleCollider
   m_TagString: Untagged
@@ -1526,15 +1526,15 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6395008722584057019}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &7226515634461009886
+  m_CollisionDetection: 2
+--- !u!138 &2747567089097660849
 FixedJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1559,7 +1559,7 @@ GameObject:
   - component: {fileID: 7100028389239628894}
   - component: {fileID: 6535773551765993376}
   - component: {fileID: 6528651695513506835}
-  - component: {fileID: 479502991446158688}
+  - component: {fileID: 434709158529491749}
   m_Layer: 0
   m_Name: Hand_Index3_CapsuleCollider
   m_TagString: Untagged
@@ -1603,15 +1603,15 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6528651695251872960}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &479502991446158688
+  m_CollisionDetection: 2
+--- !u!138 &434709158529491749
 FixedJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1636,7 +1636,7 @@ GameObject:
   - component: {fileID: 2750527073903786600}
   - component: {fileID: 6433060088427897418}
   - component: {fileID: 6955535892780662121}
-  - component: {fileID: 715993536664492874}
+  - component: {fileID: 7616268946729690898}
   m_Layer: 0
   m_Name: Hand_Middle3_CapsuleCollider
   m_TagString: Untagged
@@ -1680,15 +1680,15 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6955535892505392566}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &715993536664492874
+  m_CollisionDetection: 2
+--- !u!138 &7616268946729690898
 FixedJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1713,7 +1713,7 @@ GameObject:
   - component: {fileID: 5378156916705279733}
   - component: {fileID: 6930527977933854935}
   - component: {fileID: 7526594155219111313}
-  - component: {fileID: 5687567528869930652}
+  - component: {fileID: 28895994851069101}
   m_Layer: 0
   m_Name: Hand_Index1_CapsuleCollider
   m_TagString: Untagged
@@ -1757,15 +1757,15 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7526594155493262686}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &5687567528869930652
+  m_CollisionDetection: 2
+--- !u!138 &28895994851069101
 FixedJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1838,7 +1838,7 @@ GameObject:
   - component: {fileID: 8783177286591115579}
   - component: {fileID: 1958150923464021237}
   - component: {fileID: 8148009063960943475}
-  - component: {fileID: 6273496456000305385}
+  - component: {fileID: 7525988915043419360}
   m_Layer: 0
   m_Name: Hand_Ring2_CapsuleCollider
   m_TagString: Untagged
@@ -1882,15 +1882,15 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8148009063706710944}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &6273496456000305385
+  m_CollisionDetection: 2
+--- !u!138 &7525988915043419360
 FixedJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1963,7 +1963,7 @@ GameObject:
   - component: {fileID: 7553150408342810968}
   - component: {fileID: 865360539113315861}
   - component: {fileID: 1832381153}
-  - component: {fileID: 24774591585886787}
+  - component: {fileID: 9032467459327974837}
   m_Layer: 0
   m_Name: Hand_Start_CapsuleCollider
   m_TagString: Untagged
@@ -2007,15 +2007,15 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8365734513095068762}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &24774591585886787
+  m_CollisionDetection: 2
+--- !u!138 &9032467459327974837
 FixedJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2184,7 +2184,7 @@ GameObject:
   - component: {fileID: 6742184895173719798}
   - component: {fileID: 4018983913691367430}
   - component: {fileID: 8656262076993514417}
-  - component: {fileID: 2083405730155800456}
+  - component: {fileID: 2094134968369386992}
   m_Layer: 0
   m_Name: Hand_Thumb1_CapsuleCollider
   m_TagString: Untagged
@@ -2228,15 +2228,15 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8656262077247841150}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &2083405730155800456
+  m_CollisionDetection: 2
+--- !u!138 &2094134968369386992
 FixedJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2261,7 +2261,7 @@ GameObject:
   - component: {fileID: 6059769491508476430}
   - component: {fileID: 7035132406922440504}
   - component: {fileID: 8935397691067720076}
-  - component: {fileID: 4919121249483954360}
+  - component: {fileID: 2927392921753609135}
   m_Layer: 0
   m_Name: Hand_Index2_CapsuleCollider
   m_TagString: Untagged
@@ -2305,15 +2305,15 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8935397690784033115}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &4919121249483954360
+  m_CollisionDetection: 2
+--- !u!138 &2927392921753609135
 FixedJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2338,7 +2338,7 @@ GameObject:
   - component: {fileID: 950105194284238613}
   - component: {fileID: 1434827610168491875}
   - component: {fileID: 9106327717844039375}
-  - component: {fileID: 8556209477957515806}
+  - component: {fileID: 2003490700334688547}
   m_Layer: 0
   m_Name: Hand_Start_CapsuleCollider
   m_TagString: Untagged
@@ -2382,15 +2382,15 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9106327717578276380}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!138 &8556209477957515806
+  m_CollisionDetection: 2
+--- !u!138 &2003490700334688547
 FixedJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

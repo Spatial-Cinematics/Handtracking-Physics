@@ -441,6 +441,7 @@
                   <e p="InteractableRegistry.cs" t="Include" />
                   <e p="InteractableToolsCreator.cs" t="Include" />
                   <e p="InteractableToolsInputRouter.cs" t="Include" />
+                  <e p="PhysicsHandValueTweaker.cs" t="Include" />
                   <e p="SkeletonVisualizer.cs" t="Include" />
                   <e p="Tools" t="Include">
                     <e p="FingerTipPokeTool.cs" t="Include" />

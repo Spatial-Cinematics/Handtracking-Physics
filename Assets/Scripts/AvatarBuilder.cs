@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using ExtensionMethods;
 using Unity.Mathematics;
-using UnityEditor;
+//using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(PhysicsHand))]
@@ -139,13 +139,13 @@ public class AvatarBuilder : MonoBehaviour {
     [SerializeField, Range(0, 100)] private float springDamp = 10;
     [SerializeField, Range(0, 100)] private float anchorDamp = 20;
 }
-
-[CustomEditor(typeof(AvatarBuilder))]
-public class AvatarBuilderEditor : Editor {
-    public override void OnInspectorGUI() {
-        DrawDefaultInspector();
-        if (GUILayout.Button("GetReferences Physics Capsules")) {
-            ((AvatarBuilder)target)?.Generate();
-        }
-    }
-}
+//
+//[CustomEditor(typeof(AvatarBuilder))]
+//public class AvatarBuilderEditor : Editor {
+//    public override void OnInspectorGUI() {
+//        DrawDefaultInspector();
+//        if (GUILayout.Button("GetReferences Physics Capsules")) {
+//            ((AvatarBuilder)target)?.Generate();
+//        }
+//    }
+//}

@@ -13,7 +13,7 @@ public class FingerMap : IMap {
     public Transform inputTransform;
     public Transform ikTarget;
     public Transform ikHint;
-    [Range(0, 0.03f)]
+    [Range(-0.03f, 0.03f)]
     public float trackingPositionOffset;
     public Vector3 trackingRotationOffset;
 //    public Vector3 hintOffset;
@@ -64,7 +64,7 @@ public class PhysicsHand : MonoBehaviour {
 //        thumb.Init();
 //    }
 
-    private void Update() {
+    private void FixedUpdate() {
         index.Map();
         middle.Map();
         pinky.Map();

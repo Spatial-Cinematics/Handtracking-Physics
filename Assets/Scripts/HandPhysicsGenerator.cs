@@ -1,6 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿#if UNITY_EDITOR
 using UnityEditor;
+#endif
+
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HandPhysicsGenerator : MonoBehaviour {
@@ -23,6 +26,7 @@ public class HandPhysicsGenerator : MonoBehaviour {
     
 }
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(HandPhysicsGenerator))]
 public class HandPhysicsGeneratorEditor : Editor {
     public override void OnInspectorGUI() {
@@ -32,3 +36,5 @@ public class HandPhysicsGeneratorEditor : Editor {
         DrawDefaultInspector();
     }
 }
+
+#endif

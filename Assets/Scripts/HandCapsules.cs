@@ -1,7 +1,10 @@
-﻿using System;
+﻿#if UNITY_EDITOR 
+using UnityEditor; 
+#endif
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class HandCapsules : MonoBehaviour {
@@ -13,19 +16,24 @@ public class HandCapsules : MonoBehaviour {
     private void FixedUpdate() {
         foreach (BoneCapsule capsule in capsules) {
             Transform bone = skeleton.Bones[(int)capsule.boneId].Transform;
-
             capsule.pa.MovePosition(bone.position);
             capsule.pa.MoveRotation(bone.rotation);
         }
     }
 
     public void GetReferences() {
+
+        List<OVRSkeleton.BoneId> boneIdList = new List<OVRSkeleton.BoneId>();
+
+        foreach (BoneCapsule capsule in capsules) {
+            boneIdList.Add(capsule.boneId);
+        }
         
         capsules = new List<BoneCapsule>();
         foreach (Transform child in transform) {
             BoneCapsule capsule = new BoneCapsule {
                 rootGo = child.gameObject,
-                boneId = (OVRSkeleton.BoneId)child.GetSiblingIndex(),
+                boneId = boneIdList[child.GetSiblingIndex()],
                 pa = child.GetComponent<Rigidbody>(),
                 pb = child.GetChild(0).GetComponent<Rigidbody>(),
                 col = child.GetChild(0).GetComponent<CapsuleCollider>()
@@ -56,6 +64,8 @@ public class HandCapsules : MonoBehaviour {
 
         pb.isKinematic = false;
         pb.interpolation = RigidbodyInterpolation.Interpolate;
+        pb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+        pb.mass = 1f;
 
     }
     
@@ -68,7 +78,10 @@ public class HandCapsules : MonoBehaviour {
         GameObject pb = capsuleRoot.GetChild(0).gameObject;
         Joint joint = pb.AddComponent<FixedJoint>();
         joint.connectedBody = capsuleRoot.GetComponent<Rigidbody>();
-        
+        joint.enablePreprocessing = true;
+        joint.massScale = 1f;
+        joint.connectedMassScale = 1f;
+
     }
     
 }
@@ -85,6 +98,8 @@ public class BoneCapsule {
 
 }
 
+#if UNITY_EDITOR 
+
 [CustomEditor(typeof(HandCapsules))]
 public class HandCapsulesEditor : Editor {
     public override void OnInspectorGUI() {
@@ -94,3 +109,5 @@ public class HandCapsulesEditor : Editor {
         DrawDefaultInspector();
     }
 }
+
+#endif
