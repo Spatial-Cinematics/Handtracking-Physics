@@ -782,6 +782,7 @@
           <e p="HandCapsules.cs" t="Include" />
           <e p="HandPhysicsGenerator.cs" t="Include" />
           <e p="HandTracker.cs" t="Include" />
+          <e p="InputDeviceSwitcher.cs" t="Include" />
           <e p="LineDrawer.cs" t="Include" />
           <e p="PhysicsHand.cs" t="Include" />
         </e>

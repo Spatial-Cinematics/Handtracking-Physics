@@ -292,19 +292,19 @@ public class OVRSkeleton : MonoBehaviour
 
 	private void Update()
 	{
-//		if (!IsInitialized || _dataProvider == null)
-//		{
-//			IsDataValid = false;
-//			IsDataHighConfidence = false;
-//
-//			return;
-//		}
+		if (!IsInitialized || _dataProvider == null)
+		{
+			IsDataValid = false;
+			IsDataHighConfidence = false;
+
+			return;
+		}
 
 		var data = _dataProvider.GetSkeletonPoseData();
 
 		IsDataValid = data.IsDataValid;
-//		if (data.IsDataValid)
-//		{
+		if (data.IsDataValid)
+		{
 			IsDataHighConfidence = data.IsDataHighConfidence;
 
 			if (_updateRootPose)
@@ -329,7 +329,7 @@ public class OVRSkeleton : MonoBehaviour
 					}
 				}
 			}
-//		}
+		}
 	}
 
 	private void FixedUpdate()

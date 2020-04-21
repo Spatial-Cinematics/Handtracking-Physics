@@ -16,6 +16,7 @@ permissions and limitations under the License.
 
 using UnityEngine;
 using System.Collections;
+using UnityEngine.XR;
 
 /// <summary>
 /// Simple helper script that conditionally enables rendering of a controller if it is connected.
@@ -69,38 +70,6 @@ public class OVRControllerHelper : MonoBehaviour
 
 	void Start()
 	{
-		OVRPlugin.SystemHeadset headset = OVRPlugin.GetSystemHeadsetType();
-		switch (headset)
-		{
-			case OVRPlugin.SystemHeadset.Oculus_Go:
-				activeControllerType = ControllerType.Go;
-				break;
-			case OVRPlugin.SystemHeadset.Oculus_Quest:
-				activeControllerType = ControllerType.QuestAndRiftS;
-				break;
-			case OVRPlugin.SystemHeadset.Rift_CV1:
-				activeControllerType = ControllerType.Rift;
-				break;
-			case OVRPlugin.SystemHeadset.Rift_S:
-				activeControllerType = ControllerType.QuestAndRiftS;
-				break;
-			case OVRPlugin.SystemHeadset.GearVR_R320:
-			case OVRPlugin.SystemHeadset.GearVR_R321:
-			case OVRPlugin.SystemHeadset.GearVR_R322:
-			case OVRPlugin.SystemHeadset.GearVR_R323:
-			case OVRPlugin.SystemHeadset.GearVR_R324:
-			case OVRPlugin.SystemHeadset.GearVR_R325:
-				activeControllerType = ControllerType.GearVR;
-				break;
-			default:
-#if UNITY_EDITOR || !UNITY_ANDROID
-				activeControllerType = ControllerType.Rift;
-#else
-				activeControllerType = ControllerType.GearVR;
-#endif
-				break;
-		}
-
 		Debug.LogFormat("OVRControllerHelp: Active controller type: {0} for product {1}", activeControllerType, OVRPlugin.productName);
 		if ((activeControllerType != ControllerType.GearVR) && (activeControllerType != ControllerType.Go))
 		{

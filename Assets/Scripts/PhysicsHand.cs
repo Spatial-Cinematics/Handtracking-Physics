@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public interface IMap {
     void Map();
@@ -16,60 +17,56 @@ public class FingerMap : IMap {
     [Range(-0.03f, 0.03f)]
     public float trackingPositionOffset;
     public Vector3 trackingRotationOffset;
-//    public Vector3 hintOffset;
-
-//    public void Init() {
-//        hintOffset = ikTarget.position - ikTarget.TransformPoint(ikHint.position);
-//    }
     
     public void Map() {
-        //this offset just "changes the length of the finger" since the collider doesn't line up with the tip
         ikTarget.position = inputTransform.position + inputTransform.right * trackingPositionOffset;
         ikTarget.rotation = inputTransform.rotation * Quaternion.Euler(trackingRotationOffset);
-//        ikHint.position = ikTarget.position + hintOffset;
     }
 
 }
 
-[Serializable]
-public class WristMap : IMap{
-    
-    public Transform inputTransform;
-    public Transform ikTarget;
-    [Range(-.2f, 0.2f)]
-    public float posOffsetX, posOffsetY, posOffsetZ;
-    public Vector3 trackingPositionOffset;
-    [Range(-90, 90f)]
-    public float rotOffsetX, rotOffsetY, rotOffsetZ;
-    public Vector3 trackingRotationOffset;
-    public void Map() {
-        trackingPositionOffset = new Vector3(posOffsetX, posOffsetY, posOffsetZ);
-        trackingRotationOffset = new Vector3(rotOffsetX, rotOffsetY, rotOffsetZ);
-        ikTarget.position = inputTransform.position +  inputTransform.TransformVector(trackingPositionOffset);
-        ikTarget.rotation = inputTransform.rotation * Quaternion.Euler(trackingRotationOffset);
-    }
-    
-}
-
+[RequireComponent(typeof(RigBuilder))]
 public class PhysicsHand : MonoBehaviour {
 
-//    public WristMap wrist;
+    public bool isRightHand;
     public FingerMap index, middle, pinky, ring, thumb;
+    public bool handTrackingIsActive = true;
 
-//    private void Start() {
-//        index.Init();
-//        middle.Init();
-//        pinky.Init();
-//        ring.Init();
-//        thumb.Init();
-//    }
+    private Animator anim;
+    
+    private void Start() {
+        anim = GetComponent<Animator>();
+    }
 
     private void FixedUpdate() {
+        
+        if (handTrackingIsActive)
+            MapToHandtrackingInput();
+        else 
+            MapToControllerInput();
+        
+    }
+
+    public void ActivateHands(bool activeHands) {
+
+        handTrackingIsActive = activeHands;
+        foreach (RigBuilder.RigLayer rigLayer in GetComponent<RigBuilder>().layers) {
+            rigLayer.rig.weight = activeHands ? 1 : 0;
+        }
+
+    }
+
+    private void MapToHandtrackingInput() {
         index.Map();
         middle.Map();
         pinky.Map();
         ring.Map();
         thumb.Map();
-//        wrist.Map();
     }
+
+    private void MapToControllerInput() {
+        anim.SetFloat("OpenValue", OVRInput.Get(
+            isRightHand ? OVRInput.Axis1D.SecondaryIndexTrigger : OVRInput.Axis1D.PrimaryIndexTrigger));
+    }
+    
 }

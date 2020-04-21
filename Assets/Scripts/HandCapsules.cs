@@ -12,11 +12,17 @@ public class HandCapsules : MonoBehaviour {
     [SerializeField] private OVRSkeleton skeleton;
     [SerializeField] private PhysicMaterial physicsMaterial;
     [SerializeField] private List<BoneCapsule> capsules;
+
+    [SerializeField] private float distanceSnapThreshold = 0.1f;
     
     private void FixedUpdate() {
         foreach (BoneCapsule capsule in capsules) {
             Transform bone = skeleton.Bones[(int)capsule.boneId].Transform;
             capsule.pa.MovePosition(bone.position);
+//            if (capsule.pa.transform.Distance(bone) > distanceSnapThreshold) {
+//                capsule.pa.transform.position = bone.position;
+//                capsule.col.transform.localPosition = bone.position;
+//            }
             capsule.pa.MoveRotation(bone.rotation);
         }
     }
