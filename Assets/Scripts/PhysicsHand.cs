@@ -25,10 +25,16 @@ public class FingerMap : IMap {
 
 }
 
+[Serializable]
+public class TransformData {
+    public Vector3 rotation, position;
+}
+
 [RequireComponent(typeof(RigBuilder))]
 public class PhysicsHand : MonoBehaviour {
 
     public bool isRightHand;
+    public TransformData handtrackingOffsets, controllerOffsets; //rotation offsets for hand-tracking mode
     public FingerMap index, middle, pinky, ring, thumb;
     public bool handTrackingIsActive = true;
 
@@ -54,6 +60,15 @@ public class PhysicsHand : MonoBehaviour {
             rigLayer.rig.weight = activeHands ? 1 : 0;
         }
 
+        if (handTrackingIsActive) {
+            transform.localPosition = handtrackingOffsets.position;
+            transform.localRotation = Quaternion.Euler(handtrackingOffsets.rotation);
+        }
+        else {
+            transform.localPosition = controllerOffsets.position;
+            transform.localRotation = Quaternion.Euler(controllerOffsets.rotation);
+        }
+
     }
 
     private void MapToHandtrackingInput() {
@@ -66,7 +81,7 @@ public class PhysicsHand : MonoBehaviour {
 
     private void MapToControllerInput() {
         anim.SetFloat("OpenValue", OVRInput.Get(
-            isRightHand ? OVRInput.Axis1D.SecondaryIndexTrigger : OVRInput.Axis1D.PrimaryIndexTrigger));
+            isRightHand ? OVRInput.Axis1D.SecondaryHandTrigger : OVRInput.Axis1D.PrimaryHandTrigger));
     }
     
 }
