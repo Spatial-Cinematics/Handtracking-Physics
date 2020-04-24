@@ -56,16 +56,17 @@ public class PhysicsHand : MonoBehaviour {
         switch (inputMode) {
             case InputMode.Hands:
                 _handCapsules.AlignToHandInputs();
-                MapToHandtrackingInput();
+                MapIkTargetsToColliders();
                 break;
             case InputMode.Controllers:
                 _handCapsules.AlignToControllerInputs();
-                MapToControllerInput();
+                AnimateControllerInputRig();
+                MapIkTargetsToColliders();
                 break;
         }
     }
 
-    private void MapToHandtrackingInput() {
+    private void MapIkTargetsToColliders() {
         index.Map();
         middle.Map();
         pinky.Map();
@@ -73,7 +74,7 @@ public class PhysicsHand : MonoBehaviour {
         thumb.Map();
     }
 
-    private void MapToControllerInput() {
+    private void AnimateControllerInputRig() {
 
         float openThumb = 0, openFingers = 0, openIndex = 0;
         //SWITCH FROM HARD CODE TO BITMASKS : TODO

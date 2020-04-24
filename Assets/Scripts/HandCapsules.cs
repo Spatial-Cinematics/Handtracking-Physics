@@ -27,10 +27,11 @@ public class HandCapsules : MonoBehaviour {
     public void AlignToControllerInputs() {
         
         foreach (BoneCapsule capsule in capsules) {
-            Transform bone = controllerSkeleton.bones[(int) capsule.boneId];
+            Transform bone = capsule.controllerInputBone;//controllerSkeleton.bones[(int) capsule.boneId];
             Vector3 posOffset = capsule.posControllerOffset;
+            Quaternion rotOffset = capsule.rotControllerOffset;
             capsule.pa.MovePosition(bone.position - posOffset);
-            capsule.pa.MoveRotation(bone.rotation);
+            capsule.pa.MoveRotation(bone.rotation * rotOffset);
         }
         
     }
@@ -103,7 +104,7 @@ public class HandCapsules : MonoBehaviour {
         foreach (BoneCapsule capsule in capsules) {
             
             Transform controllerBone = controllerSkeleton.bones[(int)capsule.boneId];
-//            capsule.controllerRigBone = controllerBone;
+            capsule.controllerInputBone = controllerBone;
             capsule.posControllerOffset = controllerBone.position - capsule.pa.transform.position;
             capsule.rotControllerOffset = Quaternion.Inverse(controllerBone.localRotation * capsule.pa.transform.localRotation);
             
@@ -123,6 +124,7 @@ public class BoneCapsule {
     public CapsuleCollider col;
     public Vector3 posHandOffset, posControllerOffset; 
     public Quaternion rotHandOffset, rotControllerOffset;
+    public Transform controllerInputBone;
 }
 
 #if UNITY_EDITOR 
