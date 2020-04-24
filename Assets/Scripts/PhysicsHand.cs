@@ -32,34 +32,35 @@ public class FingerIkMap : IMap {
 
 }
 
-[RequireComponent(typeof(RigBuilder))]
+[RequireComponent(typeof(RigBuilder)), RequireComponent(typeof(HandCapsules))]
 public class PhysicsHand : MonoBehaviour {
 
     public Handedness handedness;
     public InputMode inputMode = InputMode.Hands;
+    public Animator controllerAnim; //controller model is driven by animator that takes blend values from controller input
     public TransformOffset handtrackingOffsets, controllerOffsets; //rotation offsets for hand-tracking mode
     public FingerIkMap index, middle, pinky, ring, thumb;
 
     private static readonly int HandTrackingIsActive = Animator.StringToHash("handTrackingIsActive");
     
-    private Animator _anim;
     private HandCapsules _handCapsules;
 
     private void Start() {
-        _anim = GetComponent<Animator>();
         _handCapsules = GetComponent<HandCapsules>();
     }
 
     private void FixedUpdate() {
 
+        // 1. Align capsules with the correct target to serve as a model for our mesh
+        // 2. Map IK targets to capsules to update mesh
         switch (inputMode) {
             case InputMode.Hands:
-                MapToHandtrackingInput();
                 _handCapsules.AlignToHandInputs();
+                MapToHandtrackingInput();
                 break;
             case InputMode.Controllers:
-                MapToControllerInput();
                 _handCapsules.AlignToControllerInputs();
+                MapToControllerInput();
                 break;
         }
     }
@@ -140,9 +141,9 @@ public class PhysicsHand : MonoBehaviour {
             Debug.LogError($"{transform.name} handedness not set!!!");
         }
         
-        _anim.SetFloat("open_thumb", openThumb);
-        _anim.SetFloat("open_index", openIndex);
-        _anim.SetFloat("open_fingers", openFingers);
+        controllerAnim.SetFloat("open_thumb", openThumb);
+        controllerAnim.SetFloat("open_index", openIndex);
+        controllerAnim.SetFloat("open_fingers", openFingers);
         
     } 
     
@@ -152,17 +153,17 @@ public class PhysicsHand : MonoBehaviour {
 
         switch (newInputMode) {
             case InputMode.Hands:
-                
+
                 transform.localPosition = handtrackingOffsets.position;
                 transform.localRotation = Quaternion.Euler(handtrackingOffsets.rotation);
-                _anim.SetBool(HandTrackingIsActive, true);
+                controllerAnim.SetBool(HandTrackingIsActive, true);
 
                 break;
             case InputMode.Controllers:
-                
+
                 transform.localPosition = controllerOffsets.position;
                 transform.localRotation = Quaternion.Euler(controllerOffsets.rotation);
-                _anim.SetBool(HandTrackingIsActive, false);
+                controllerAnim.SetBool(HandTrackingIsActive, false);
 
                 break;
         }
