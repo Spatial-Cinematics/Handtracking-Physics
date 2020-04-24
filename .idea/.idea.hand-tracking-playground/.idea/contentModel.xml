@@ -765,6 +765,8 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="AvatarBuilder.cs" t="Include" />
+          <e p="ControllerInputRig.cs" t="Include" />
+          <e p="ControllerInputSkeleton.cs" t="Include" />
           <e p="ExtensionMethods" t="Include">
             <e p="AnimatorExtensions.cs" t="Include" />
             <e p="ArrayExtensions.cs" t="Include" />

@@ -31,13 +31,14 @@ public class InputDeviceSwitcher : MonoBehaviour {
 
         if (newDevice == OVRInput.Controller.Hands || newDevice == OVRInput.Controller.LHand ||
             newDevice == OVRInput.Controller.RHand) {
-            rightPhysicsHand.ActivateHands(true);
-            leftPhysicsHand.ActivateHands(true);
+            rightPhysicsHand.SetInputMode(InputMode.Hands);
+            leftPhysicsHand.SetInputMode(InputMode.Hands);
         }
         else {
-            rightPhysicsHand.ActivateHands(false);
-            leftPhysicsHand.ActivateHands(false);
+            rightPhysicsHand.SetInputMode(InputMode.Controllers);
+            leftPhysicsHand.SetInputMode(InputMode.Controllers);
         }
+        
     }
 
     private void OnConnectInputDevice(InputDevice newDevice) {

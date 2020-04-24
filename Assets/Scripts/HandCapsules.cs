@@ -9,22 +9,30 @@ using UnityEngine;
 
 public class HandCapsules : MonoBehaviour {
 
-    [SerializeField] private OVRSkeleton skeleton;
+    [SerializeField] private OVRSkeleton handSkeleton;
+    [SerializeField] private ControllerInputSkeleton controllerSkeleton;
     [SerializeField] private PhysicMaterial physicsMaterial;
     [SerializeField] private List<BoneCapsule> capsules;
 
     [SerializeField] private float distanceSnapThreshold = 0.1f;
-    
-    private void FixedUpdate() {
+
+    public void AlignToHandInputs() {
         foreach (BoneCapsule capsule in capsules) {
-            Transform bone = skeleton.Bones[(int)capsule.boneId].Transform;
-            capsule.pa.MovePosition(bone.position);
-//            if (capsule.pa.transform.Distance(bone) > distanceSnapThreshold) {
-//                capsule.pa.transform.position = bone.position;
-//                capsule.col.transform.localPosition = bone.position;
-//            }
+            Transform bone = handSkeleton.Bones[(int) capsule.boneId].Transform;
+            Vector3 posOffset = capsule.posHandOffset;
+            capsule.pa.MovePosition(bone.position - posOffset);
             capsule.pa.MoveRotation(bone.rotation);
         }
+    }
+    public void AlignToControllerInputs() {
+        
+        foreach (BoneCapsule capsule in capsules) {
+            Transform bone = controllerSkeleton.bones[(int) capsule.boneId];
+            Vector3 posOffset = capsule.posControllerOffset;
+            capsule.pa.MovePosition(bone.position - posOffset);
+            capsule.pa.MoveRotation(bone.rotation);
+        }
+        
     }
 
     public void GetReferences() {
@@ -38,7 +46,7 @@ public class HandCapsules : MonoBehaviour {
         capsules = new List<BoneCapsule>();
         foreach (Transform child in transform) {
             BoneCapsule capsule = new BoneCapsule {
-                rootGo = child.gameObject,
+//                rootGo = child.gameObject,
                 boneId = boneIdList[child.GetSiblingIndex()],
                 pa = child.GetComponent<Rigidbody>(),
                 pb = child.GetChild(0).GetComponent<Rigidbody>(),
@@ -89,19 +97,32 @@ public class HandCapsules : MonoBehaviour {
         joint.connectedMassScale = 1f;
 
     }
+
+    public void SetOffsets() {
+        
+        foreach (BoneCapsule capsule in capsules) {
+            
+            Transform controllerBone = controllerSkeleton.bones[(int)capsule.boneId];
+//            capsule.controllerRigBone = controllerBone;
+            capsule.posControllerOffset = controllerBone.position - capsule.pa.transform.position;
+            capsule.rotControllerOffset = Quaternion.Inverse(controllerBone.localRotation * capsule.pa.transform.localRotation);
+            
+        }
+        
+    }
     
 }
 
 
 [Serializable]
 public class BoneCapsule {
-
-    public GameObject rootGo;
+//    public GameObject rootGo;
     public OVRSkeleton.BoneId boneId;
     public Rigidbody pa; //kinematic physics anchor 'pa'
     public Rigidbody pb; //simulated physics body 'pd'
     public CapsuleCollider col;
-
+    public Vector3 posHandOffset, posControllerOffset; 
+    public Quaternion rotHandOffset, rotControllerOffset;
 }
 
 #if UNITY_EDITOR 
@@ -111,6 +132,11 @@ public class HandCapsulesEditor : Editor {
     public override void OnInspectorGUI() {
         if (GUILayout.Button("Update Capsule List")) {
             ((HandCapsules)target)?.GetReferences();
+        }
+
+        if (GUILayout.Button("Calculate Capsule Offsets")) {
+            ((HandCapsules)target)?.SetOffsets();
+
         }
         DrawDefaultInspector();
     }

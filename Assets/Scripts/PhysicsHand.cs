@@ -4,72 +4,64 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
+public enum Handedness {None, Left, Right}
+public enum InputMode {Hands, Controllers}
+
 public interface IMap {
     void Map();
 }
 
 [Serializable]
-public class FingerMap : IMap {
+public class TransformOffset {
+    public Vector3 rotation, position;
+}
 
-    public Transform inputTransform;
+[Serializable]
+public class FingerIkMap : IMap {
+
+    public Transform collisionModelTransform; //should be collider
     public Transform ikTarget;
-    public Transform ikHint;
     [Range(-0.03f, 0.03f)]
     public float trackingPositionOffset;
     public Vector3 trackingRotationOffset;
     
     public void Map() {
-        ikTarget.position = inputTransform.position + inputTransform.right * trackingPositionOffset;
-        ikTarget.rotation = inputTransform.rotation * Quaternion.Euler(trackingRotationOffset);
+        ikTarget.position = collisionModelTransform.position + collisionModelTransform.right * trackingPositionOffset;
+        ikTarget.rotation = collisionModelTransform.rotation * Quaternion.Euler(trackingRotationOffset);
     }
 
-}
-
-[Serializable]
-public class TransformData {
-    public Vector3 rotation, position;
 }
 
 [RequireComponent(typeof(RigBuilder))]
 public class PhysicsHand : MonoBehaviour {
 
-    public bool isRightHand;
-    public TransformData handtrackingOffsets, controllerOffsets; //rotation offsets for hand-tracking mode
-    public FingerMap index, middle, pinky, ring, thumb;
-    public bool handTrackingIsActive = true;
+    public Handedness handedness;
+    public InputMode inputMode = InputMode.Hands;
+    public TransformOffset handtrackingOffsets, controllerOffsets; //rotation offsets for hand-tracking mode
+    public FingerIkMap index, middle, pinky, ring, thumb;
 
-    private Animator anim;
+    private static readonly int HandTrackingIsActive = Animator.StringToHash("handTrackingIsActive");
     
+    private Animator _anim;
+    private HandCapsules _handCapsules;
+
     private void Start() {
-        anim = GetComponent<Animator>();
+        _anim = GetComponent<Animator>();
+        _handCapsules = GetComponent<HandCapsules>();
     }
 
     private void FixedUpdate() {
-        
-        if (handTrackingIsActive)
-            MapToHandtrackingInput();
-        else 
-            MapToControllerInput();
-        
-    }
 
-    public void ActivateHands(bool activeHands) {
-
-        handTrackingIsActive = activeHands;
-        anim.SetBool("handTrackingIsActive", activeHands);
-//        foreach (RigBuilder.RigLayer rigLayer in GetComponent<RigBuilder>().layers) {
-//            rigLayer.rig.weight = activeHands ? 1 : 0;
-//        }
-
-        if (handTrackingIsActive) {
-            transform.localPosition = handtrackingOffsets.position;
-            transform.localRotation = Quaternion.Euler(handtrackingOffsets.rotation);
+        switch (inputMode) {
+            case InputMode.Hands:
+                MapToHandtrackingInput();
+                _handCapsules.AlignToHandInputs();
+                break;
+            case InputMode.Controllers:
+                MapToControllerInput();
+                _handCapsules.AlignToControllerInputs();
+                break;
         }
-        else {
-            transform.localPosition = controllerOffsets.position;
-            transform.localRotation = Quaternion.Euler(controllerOffsets.rotation);
-        }
-
     }
 
     private void MapToHandtrackingInput() {
@@ -83,8 +75,8 @@ public class PhysicsHand : MonoBehaviour {
     private void MapToControllerInput() {
 
         float openThumb = 0, openFingers = 0, openIndex = 0;
-        
-        if (isRightHand) { //check right hand input
+        //SWITCH FROM HARD CODE TO BITMASKS : TODO
+        if (handedness == Handedness.Right) { //check right hand input
 
             //check thumb
             if (OVRInput.Get(OVRInput.Button.One) || OVRInput.Get(OVRInput.Button.Two)) {
@@ -114,7 +106,7 @@ public class PhysicsHand : MonoBehaviour {
             openFingers = handInput.Remap(0, 1, 1, 0f);
 
         }
-        else { //check left hand input
+        else if (handedness == Handedness.Left) { //check left hand input
             
             //check thumb
             if (OVRInput.Get(OVRInput.Button.Three) || OVRInput.Get(OVRInput.Button.Four)) {
@@ -144,13 +136,36 @@ public class PhysicsHand : MonoBehaviour {
             openFingers = handInput.Remap(0, 1, 1, 0f);
             
         }
+        else {
+            Debug.LogError($"{transform.name} handedness not set!!!");
+        }
         
+        _anim.SetFloat("open_thumb", openThumb);
+        _anim.SetFloat("open_index", openIndex);
+        _anim.SetFloat("open_fingers", openFingers);
         
-        
-        anim.SetFloat("open_thumb", openThumb);
-        anim.SetFloat("open_index", openIndex);
-        anim.SetFloat("open_fingers", openFingers);
-        
+    } 
+    
+    public void SetInputMode(InputMode newInputMode) {
+
+        inputMode = newInputMode;
+
+        switch (newInputMode) {
+            case InputMode.Hands:
+                
+                transform.localPosition = handtrackingOffsets.position;
+                transform.localRotation = Quaternion.Euler(handtrackingOffsets.rotation);
+                _anim.SetBool(HandTrackingIsActive, true);
+
+                break;
+            case InputMode.Controllers:
+                
+                transform.localPosition = controllerOffsets.position;
+                transform.localRotation = Quaternion.Euler(controllerOffsets.rotation);
+                _anim.SetBool(HandTrackingIsActive, false);
+
+                break;
+        }
     }
     
 }
