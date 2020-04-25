@@ -5,6 +5,7 @@ using UnityEditor;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class HandCapsules : MonoBehaviour {
@@ -13,8 +14,6 @@ public class HandCapsules : MonoBehaviour {
     [SerializeField] private ControllerInputSkeleton controllerSkeleton;
     [SerializeField] private PhysicMaterial physicsMaterial;
     [SerializeField] private List<BoneCapsule> capsules;
-
-    [SerializeField] private float distanceSnapThreshold = 0.1f;
 
     public void AlignToHandInputs() {
         foreach (BoneCapsule capsule in capsules) {
@@ -29,7 +28,7 @@ public class HandCapsules : MonoBehaviour {
         foreach (BoneCapsule capsule in capsules) {
             Transform bone = capsule.controllerInputBone;//controllerSkeleton.bones[(int) capsule.boneId];
             Vector3 posOffset = capsule.posControllerOffset;
-            Quaternion rotOffset = capsule.rotControllerOffset;
+            Quaternion rotOffset = Quaternion.Euler(capsule.rotControllerOffset);
             capsule.pa.MovePosition(bone.position - posOffset);
             capsule.pa.MoveRotation(bone.rotation * rotOffset);
         }
@@ -103,11 +102,15 @@ public class HandCapsules : MonoBehaviour {
         
         foreach (BoneCapsule capsule in capsules) {
             
-            Transform controllerBone = controllerSkeleton.bones[(int)capsule.boneId];
+            Transform controllerBone = capsule.controllerInputBone;//controllerSkeleton.bones[(int) capsule.boneId];
             capsule.controllerInputBone = controllerBone;
-            capsule.posControllerOffset = controllerBone.position - capsule.pa.transform.position;
-            capsule.rotControllerOffset = Quaternion.Inverse(controllerBone.localRotation * capsule.pa.transform.localRotation);
-            
+//            capsule.posControllerOffset = GetComponent<PhysicsHand>().handedness == Handedness.Right
+//                ? controllerBone.position - capsule.pa.transform.position
+//                : capsule.pa.transform.position - controllerBone.position;
+            capsule.rotControllerOffset = GetComponent<PhysicsHand>().handedness == Handedness.Right
+                ? new Vector3(0, -90, 90)
+                : new Vector3(180, 90, -90);
+
         }
         
     }
@@ -123,7 +126,7 @@ public class BoneCapsule {
     public Rigidbody pb; //simulated physics body 'pd'
     public CapsuleCollider col;
     public Vector3 posHandOffset, posControllerOffset; 
-    public Quaternion rotHandOffset, rotControllerOffset;
+    public Vector3 rotHandOffset, rotControllerOffset;
     public Transform controllerInputBone;
 }
 
