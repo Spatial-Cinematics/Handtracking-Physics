@@ -71,6 +71,13 @@ namespace ExtensionMethods {
             return Vector3.Lerp(Vector3.Lerp(p0,p1,t), Vector3.Lerp(p1,p2,t), t);
 
         }
-    
+
+        public static bool PointIsBetween(this Vector3 p1, Vector3 p2, Vector3 p3) {
+            Vector3 dir1 = p1.DirectionTo(p2);
+            Vector3 dir2 = p1.DirectionTo(p3);
+            //if p1's direction to each other pointing in opposite directions than p1 is between p2 and p3
+            return Vector3.Dot(dir1, dir2) < 0;
+        }
+        
     }
 }

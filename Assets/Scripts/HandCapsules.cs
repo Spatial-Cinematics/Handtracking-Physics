@@ -8,19 +8,39 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
+[Serializable]
+public class BoneCapsule {
+//    public GameObject rootGo;
+    public bool useRaycasts = false;
+    public OVRSkeleton.BoneId boneId;
+    public Rigidbody pa; //kinematic physics anchor 'pa'
+    public Rigidbody pb; //simulated physics body 'pd'
+    public CapsuleCollider col;
+    public Vector3 posHandOffset, posControllerOffset; 
+    public Vector3 rotHandOffset, rotControllerOffset;
+    public Transform controllerInputBone;
+}
+
 public class HandCapsules : MonoBehaviour {
 
     [SerializeField] private OVRSkeleton handSkeleton;
     [SerializeField] private ControllerInputSkeleton controllerSkeleton;
     [SerializeField] private PhysicMaterial physicsMaterial;
+    [SerializeField] private LayerMask rayLayerMask;
+    [SerializeField] private float rayCastDistance = 0.1f;
+    [SerializeField] private float rayCastForceScale = 1f;
     [SerializeField] private List<BoneCapsule> capsules;
-
+    
+    
     public void AlignToHandInputs() {
         foreach (BoneCapsule capsule in capsules) {
             Transform bone = handSkeleton.Bones[(int) capsule.boneId].Transform;
             Vector3 posOffset = capsule.posHandOffset;
             capsule.pa.MovePosition(bone.position - posOffset);
             capsule.pa.MoveRotation(bone.rotation);
+            if (capsule.useRaycasts) {
+                RaycastFromPhysicsBody(capsule.pb);
+            }
         }
     }
     public void AlignToControllerInputs() {
@@ -31,6 +51,23 @@ public class HandCapsules : MonoBehaviour {
             Quaternion rotOffset = Quaternion.Euler(capsule.rotControllerOffset);
             capsule.pa.MovePosition(bone.position - posOffset);
             capsule.pa.MoveRotation(bone.rotation * rotOffset);
+            if (capsule.useRaycasts) {
+                RaycastFromPhysicsBody(capsule.pb);
+            }
+        }
+        
+    }
+
+    private void RaycastFromPhysicsBody(Rigidbody rb) {
+
+        Vector3 vel = rb.velocity;
+        Vector3 momentum = rb.mass * vel;
+        Ray ray = new Ray(rb.position, vel.normalized);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, rayCastDistance, rayLayerMask)) {
+            Rigidbody hitRb = hit.collider.attachedRigidbody;
+            if (hitRb)
+                hitRb.AddForceAtPosition(momentum, hit.point);
         }
         
     }
@@ -118,33 +155,21 @@ public class HandCapsules : MonoBehaviour {
 }
 
 
-[Serializable]
-public class BoneCapsule {
-//    public GameObject rootGo;
-    public OVRSkeleton.BoneId boneId;
-    public Rigidbody pa; //kinematic physics anchor 'pa'
-    public Rigidbody pb; //simulated physics body 'pd'
-    public CapsuleCollider col;
-    public Vector3 posHandOffset, posControllerOffset; 
-    public Vector3 rotHandOffset, rotControllerOffset;
-    public Transform controllerInputBone;
-}
-
 #if UNITY_EDITOR 
 
-[CustomEditor(typeof(HandCapsules))]
-public class HandCapsulesEditor : Editor {
-    public override void OnInspectorGUI() {
-        if (GUILayout.Button("Update Capsule List")) {
-            ((HandCapsules)target)?.GetReferences();
-        }
-
-        if (GUILayout.Button("Calculate Capsule Offsets")) {
-            ((HandCapsules)target)?.SetOffsets();
-
-        }
-        DrawDefaultInspector();
-    }
-}
+//[CustomEditor(typeof(HandCapsules))]
+//public class HandCapsulesEditor : Editor {
+//    public override void OnInspectorGUI() {
+//        if (GUILayout.Button("Update Capsule List")) {
+//            ((HandCapsules)target)?.GetReferences();
+//        }
+//
+//        if (GUILayout.Button("Calculate Capsule Offsets")) {
+//            ((HandCapsules)target)?.SetOffsets();
+//
+//        }
+//        DrawDefaultInspector();
+//    }
+//}
 
 #endif

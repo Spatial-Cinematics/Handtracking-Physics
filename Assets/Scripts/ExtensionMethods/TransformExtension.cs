@@ -44,5 +44,13 @@ public static class TransformExtensions
     public static T AddComponent <T>(this Transform transform) where T : Component {
         return transform.gameObject.AddComponent<T>();
     }
+
+    public static bool IsBetweenPoints(this Transform t1, Vector3 p1, Vector3 p2) {
+        return t1.position.PointIsBetween(p1, p2);
+    }
+
+    public static bool IsBetweenTransforms(this Transform t1, Transform t2, Transform t3) {
+        return t1.IsBetweenPoints(t2.position, t3.position);
+    }
     
 }

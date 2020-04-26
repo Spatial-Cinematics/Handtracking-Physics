@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnableAfterStart : MonoBehaviour {
     
-    [SerializeField] private GameObject go;
+    [SerializeField] private List<GameObject> gos;
     [SerializeField] private float timer = 0.1f;
     private void Start() {
         StartCoroutine(EnableAfter());
@@ -14,7 +14,10 @@ public class EnableAfterStart : MonoBehaviour {
     private IEnumerator EnableAfter() {
         
         yield return new WaitForSeconds(timer);
-        go.SetActive(true);
+        foreach (var go in gos) {
+            go.SetActive(true);
+
+        }
         
     }
     

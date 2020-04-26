@@ -782,6 +782,7 @@
             <e p="Vector3Extensions.cs" t="Include" />
           </e>
           <e p="Force.cs" t="Include" />
+          <e p="Grabbable.cs" t="Include" />
           <e p="HandCapsules.cs" t="Include" />
           <e p="HandPhysicsGenerator.cs" t="Include" />
           <e p="HandTracker.cs" t="Include" />

@@ -868,6 +868,7 @@ MonoBehaviour:
   handedness: 1
   inputMode: 0
   controllerAnim: {fileID: 8662637602154255295}
+  heldObjectIK: {fileID: 0}
   handtrackingOffsets:
     rotation: {x: 180, y: 180, z: 0}
     position: {x: 0, y: 0, z: 0}
@@ -914,8 +915,14 @@ MonoBehaviour:
   handSkeleton: {fileID: 114567484304363453}
   controllerSkeleton: {fileID: 8662637602154255299}
   physicsMaterial: {fileID: 13400000, guid: 8ceb1bf43b5ea2a42905fb4ecec677a1, type: 2}
+  rayLayerMask:
+    serializedVersion: 2
+    m_Bits: 311
+  rayCastDistance: 0.1
+  rayCastForceScale: 1
   capsules:
-  - boneId: 0
+  - useRaycasts: 0
+    boneId: 0
     pa: {fileID: 4290598645189173595}
     pb: {fileID: 8850966824383409404}
     col: {fileID: 1683598306883872080}
@@ -924,7 +931,8 @@ MonoBehaviour:
     rotHandOffset: {x: 0, y: 0, z: 0}
     rotControllerOffset: {x: 0, y: 90, z: 90}
     controllerInputBone: {fileID: 6366139816447354546}
-  - boneId: 1
+  - useRaycasts: 0
+    boneId: 1
     pa: {fileID: 4869829489149887692}
     pb: {fileID: 235044208605549214}
     col: {fileID: 8161073108862547462}
@@ -933,7 +941,8 @@ MonoBehaviour:
     rotHandOffset: {x: 0, y: 0, z: 0}
     rotControllerOffset: {x: 0, y: 90, z: 90}
     controllerInputBone: {fileID: 6366139816447354546}
-  - boneId: 2
+  - useRaycasts: 0
+    boneId: 2
     pa: {fileID: 1554232484389098720}
     pb: {fileID: 339141755036709074}
     col: {fileID: 627899694952842278}
@@ -942,7 +951,8 @@ MonoBehaviour:
     rotHandOffset: {x: 0, y: 0, z: 0}
     rotControllerOffset: {x: 0, y: 90, z: 90}
     controllerInputBone: {fileID: 6366139816447354546}
-  - boneId: 3
+  - useRaycasts: 0
+    boneId: 3
     pa: {fileID: 1522182251233131832}
     pb: {fileID: 8977336374875320706}
     col: {fileID: 3707187286334870069}
@@ -951,7 +961,8 @@ MonoBehaviour:
     rotHandOffset: {x: 0, y: 0, z: 0}
     rotControllerOffset: {x: 0, y: 90, z: 90}
     controllerInputBone: {fileID: 2721919588209001841}
-  - boneId: 4
+  - useRaycasts: 0
+    boneId: 4
     pa: {fileID: 7092411377012611271}
     pb: {fileID: 6632532506003220063}
     col: {fileID: 3693285305610522833}
@@ -960,7 +971,8 @@ MonoBehaviour:
     rotHandOffset: {x: 0, y: 0, z: 0}
     rotControllerOffset: {x: 0, y: 90, z: 90}
     controllerInputBone: {fileID: 398048669570860285}
-  - boneId: 5
+  - useRaycasts: 1
+    boneId: 5
     pa: {fileID: 8506347668338495702}
     pb: {fileID: 3529463485225599048}
     col: {fileID: 6968014558353370938}
@@ -969,7 +981,8 @@ MonoBehaviour:
     rotHandOffset: {x: 0, y: 0, z: 0}
     rotControllerOffset: {x: 0, y: 90, z: 90}
     controllerInputBone: {fileID: 4618357012101172284}
-  - boneId: 6
+  - useRaycasts: 0
+    boneId: 6
     pa: {fileID: 3818008965810929768}
     pb: {fileID: 7838244812743317410}
     col: {fileID: 7249372462484783844}
@@ -978,7 +991,8 @@ MonoBehaviour:
     rotHandOffset: {x: 0, y: 0, z: 0}
     rotControllerOffset: {x: 0, y: 90, z: 90}
     controllerInputBone: {fileID: 658438489362228750}
-  - boneId: 7
+  - useRaycasts: 0
+    boneId: 7
     pa: {fileID: 890463635759550539}
     pb: {fileID: 8697637780818181055}
     col: {fileID: 7283745594830730507}
@@ -987,7 +1001,8 @@ MonoBehaviour:
     rotHandOffset: {x: 0, y: 0, z: 0}
     rotControllerOffset: {x: 0, y: 90, z: 90}
     controllerInputBone: {fileID: 967969046083063660}
-  - boneId: 8
+  - useRaycasts: 1
+    boneId: 8
     pa: {fileID: 2945815236304258049}
     pb: {fileID: 6786556856188096032}
     col: {fileID: 6775494990214163859}
@@ -996,7 +1011,8 @@ MonoBehaviour:
     rotHandOffset: {x: 0, y: 0, z: 0}
     rotControllerOffset: {x: 0, y: 90, z: 90}
     controllerInputBone: {fileID: 7200391059390588104}
-  - boneId: 9
+  - useRaycasts: 0
+    boneId: 9
     pa: {fileID: 113400555756922589}
     pb: {fileID: 4230552416012478929}
     col: {fileID: 3703057282965651216}
@@ -1005,7 +1021,8 @@ MonoBehaviour:
     rotHandOffset: {x: 0, y: 0, z: 0}
     rotControllerOffset: {x: 0, y: 90, z: 90}
     controllerInputBone: {fileID: 1018065504990686560}
-  - boneId: 10
+  - useRaycasts: 0
+    boneId: 10
     pa: {fileID: 4018251896289870928}
     pb: {fileID: 2789554406306998265}
     col: {fileID: 1064193625700659854}
@@ -1014,7 +1031,8 @@ MonoBehaviour:
     rotHandOffset: {x: 0, y: 0, z: 0}
     rotControllerOffset: {x: 0, y: 90, z: 90}
     controllerInputBone: {fileID: 5141256167634422538}
-  - boneId: 11
+  - useRaycasts: 1
+    boneId: 11
     pa: {fileID: 5634213185941154965}
     pb: {fileID: 7220352859507484506}
     col: {fileID: 6769488241557780601}
@@ -1023,7 +1041,8 @@ MonoBehaviour:
     rotHandOffset: {x: 0, y: 0, z: 0}
     rotControllerOffset: {x: 0, y: 90, z: 90}
     controllerInputBone: {fileID: 727907562536739214}
-  - boneId: 12
+  - useRaycasts: 0
+    boneId: 12
     pa: {fileID: 528309001341213696}
     pb: {fileID: 2617013170904038319}
     col: {fileID: 7868089811817990823}
@@ -1032,7 +1051,8 @@ MonoBehaviour:
     rotHandOffset: {x: 0, y: 0, z: 0}
     rotControllerOffset: {x: 0, y: 90, z: 90}
     controllerInputBone: {fileID: 8257838779575264655}
-  - boneId: 13
+  - useRaycasts: 0
+    boneId: 13
     pa: {fileID: 3784289542097617042}
     pb: {fileID: 8477837954214969664}
     col: {fileID: 2276675450668175046}
@@ -1041,7 +1061,8 @@ MonoBehaviour:
     rotHandOffset: {x: 0, y: 0, z: 0}
     rotControllerOffset: {x: 0, y: 90, z: 90}
     controllerInputBone: {fileID: 940885801959834055}
-  - boneId: 14
+  - useRaycasts: 1
+    boneId: 14
     pa: {fileID: 2238220066331005902}
     pb: {fileID: 760193595602179362}
     col: {fileID: 7465029200701555039}
@@ -1050,7 +1071,8 @@ MonoBehaviour:
     rotHandOffset: {x: 0, y: 0, z: 0}
     rotControllerOffset: {x: 0, y: 90, z: 90}
     controllerInputBone: {fileID: 3820020073115056198}
-  - boneId: 16
+  - useRaycasts: 0
+    boneId: 16
     pa: {fileID: 242628066276235695}
     pb: {fileID: 4710579426671803694}
     col: {fileID: 898016818899304886}
@@ -1059,7 +1081,8 @@ MonoBehaviour:
     rotHandOffset: {x: 0, y: 0, z: 0}
     rotControllerOffset: {x: 0, y: 90, z: 90}
     controllerInputBone: {fileID: 2591046118853891581}
-  - boneId: 17
+  - useRaycasts: 0
+    boneId: 17
     pa: {fileID: 7080619999808080007}
     pb: {fileID: 610629145872880119}
     col: {fileID: 977646231333561327}
@@ -1068,7 +1091,8 @@ MonoBehaviour:
     rotHandOffset: {x: 0, y: 0, z: 0}
     rotControllerOffset: {x: 0, y: 90, z: 90}
     controllerInputBone: {fileID: 4304996080963977211}
-  - boneId: 18
+  - useRaycasts: 1
+    boneId: 18
     pa: {fileID: 8443367777393712654}
     pb: {fileID: 4456134737285477256}
     col: {fileID: 7364479749660460379}

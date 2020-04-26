@@ -31,5 +31,12 @@ public static class AnimatorExtensions {
     public static float PlayTime(this Animator anim, int layer) {
         return anim.GetCurrentAnimatorStateInfo(layer).normalizedTime;
     }
+
+    public static void LerpFloat(this Animator anim, string name, float newVal, float? t = null) {
+        float currentVal = anim.GetFloat(name);
+        if (t == null)
+            t = Time.deltaTime;
+        anim.SetFloat(name, Mathf.Lerp(currentVal, newVal, (float)t));
+    }
     
 }

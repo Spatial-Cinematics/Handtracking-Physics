@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
-public enum Handedness {None, Left, Right}
+public enum Handedness {None, Left, Right, Both}
 public enum InputMode {Hands, Controllers}
 
 public interface IMap {
@@ -38,6 +38,7 @@ public class PhysicsHand : MonoBehaviour {
     public Handedness handedness;
     public InputMode inputMode = InputMode.Hands;
     public Animator controllerAnim; //controller model is driven by animator that takes blend values from controller input
+    public float controllerHandAnimationSpeed = 10f;
     public TransformOffset handtrackingOffsets, controllerOffsets; //rotation offsets for hand-tracking mode
     public FingerIkMap index, middle, pinky, ring, thumb;
 
@@ -74,15 +75,20 @@ public class PhysicsHand : MonoBehaviour {
         thumb.Map();
     }
 
+    //THIS FUNCTION NEEDS TO BE REDONE - REMOVE REPEAT CODE AND SWITCH FROM HARD CODE TO BITMASKS : TODO
     private void AnimateControllerInputRig() {
 
         float openThumb = 0, openFingers = 0, openIndex = 0;
-        //SWITCH FROM HARD CODE TO BITMASKS : TODO
         if (handedness == Handedness.Right) { //check right hand input
 
+               
+            //check middle finger ("hand input") input
+            float handInput = OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger);
+            openFingers = handInput.Remap(0, 1, 1, 0f);
+            
             //check thumb
             if (OVRInput.Get(OVRInput.Button.One) || OVRInput.Get(OVRInput.Button.Two)) {
-                openThumb = 0; //thumb button pressed
+                openThumb = 0.4f - handInput; //thumb button pressed
             } else if (OVRInput.Get(OVRInput.Touch.One) || (OVRInput.Get(OVRInput.Touch.Two))) {
                 openThumb = 0.8f; //thumb button touched
             } else {
@@ -100,21 +106,22 @@ public class PhysicsHand : MonoBehaviour {
                     openIndex = 1f;
             }
             else {                 //trigger is being pressed
-                openIndex = indexInput.Remap(0, 1, 0.8f, 0.0f);
+                openIndex = indexInput.Remap(0, 1, 0.8f, 0.4f);
+                openIndex -= handInput;
             }
-            
-            //check middle finger ("hand input") input
-            float handInput = OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger);
-            openFingers = handInput.Remap(0, 1, 1, 0f);
 
         }
         else if (handedness == Handedness.Left) { //check left hand input
             
+            //check middle finger ("hand input") input
+            float handInput = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger);
+            openFingers = handInput.Remap(0, 1, 1, 0f);
+            
             //check thumb
             if (OVRInput.Get(OVRInput.Button.Three) || OVRInput.Get(OVRInput.Button.Four)) {
-                openThumb = 0; //thumb button pressed
+                openThumb = 0.4f - handInput; //thumb button pressed
             } else if (OVRInput.Get(OVRInput.Touch.Three) || (OVRInput.Get(OVRInput.Touch.Four))) {
-                openThumb = 0.9f; //thumb button touched
+                openThumb = 0.8f; //thumb button touched
             } else {
                 openThumb = 1f; // thumb buttons are untouched
             }
@@ -125,26 +132,23 @@ public class PhysicsHand : MonoBehaviour {
             if (indexInput <= 0 ) {
                 //if touching, close a little
                 if (OVRInput.Get(OVRInput.NearTouch.PrimaryIndexTrigger))
-                    openIndex = 0.9f;
+                    openIndex = 0.8f;
                 else
                     openIndex = 1f;
             }
             else {                 //trigger is being pressed
-                openIndex = indexInput.Remap(0, 1, 0.8f, 0.0f);
+                openIndex = indexInput.Remap(0, 1, 0.8f, 0.4f);
+                openIndex -= handInput;
             }
-            
-            //check middle finger ("hand input") input
-            float handInput = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger);
-            openFingers = handInput.Remap(0, 1, 1, 0f);
             
         }
         else {
             Debug.LogError($"{transform.name} handedness not set!!!");
         }
         
-        controllerAnim.SetFloat("open_thumb", openThumb);
-        controllerAnim.SetFloat("open_index", openIndex);
-        controllerAnim.SetFloat("open_fingers", openFingers);
+        controllerAnim.LerpFloat("open_thumb", openThumb, Time.deltaTime * controllerHandAnimationSpeed);
+        controllerAnim.LerpFloat("open_index", openIndex, Time.deltaTime * controllerHandAnimationSpeed);
+        controllerAnim.LerpFloat("open_fingers", openFingers, Time.deltaTime * controllerHandAnimationSpeed);
         
     } 
     
@@ -168,6 +172,10 @@ public class PhysicsHand : MonoBehaviour {
 
                 break;
         }
+    }
+
+    public void SetHeldObject(Transform newHeldObject) {
+//        heldObjectIK.data.constrainedObject = newHeldObject;
     }
     
 }
