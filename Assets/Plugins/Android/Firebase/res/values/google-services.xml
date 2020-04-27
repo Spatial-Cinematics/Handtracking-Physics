@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/firebase_database_url,@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id">
+  <string name="firebase_database_url" translatable="false">https://hand-tracking-9a2c7.firebaseio.com</string>
+  <string name="gcm_defaultSenderId" translatable="false">122139141786</string>
+  <string name="google_storage_bucket" translatable="false">hand-tracking-9a2c7.appspot.com</string>
+  <string name="project_id" translatable="false">hand-tracking-9a2c7</string>
+  <string name="google_api_key" translatable="false">AIzaSyAPRjetRII7IpTBj79A1ubC7uxSKHKqJuE</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAPRjetRII7IpTBj79A1ubC7uxSKHKqJuE</string>
+  <string name="google_app_id" translatable="false">1:122139141786:android:0d102a837c1e156789a123</string>
+  <string name="default_web_client_id" translatable="false">122139141786-a4vipj068nfniba7krdl4gg8qvn0n8uq.apps.googleusercontent.com</string>
+</resources>

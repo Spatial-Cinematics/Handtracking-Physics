@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "122139141786",
+    "firebase_url": "https://hand-tracking-9a2c7.firebaseio.com",
+    "project_id": "hand-tracking-9a2c7",
+    "storage_bucket": "hand-tracking-9a2c7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:122139141786:android:0d102a837c1e156789a123",
+        "android_client_info": {
+          "package_name": "com.Spatial.HandTrackingPlayground"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "122139141786-a4vipj068nfniba7krdl4gg8qvn0n8uq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPRjetRII7IpTBj79A1ubC7uxSKHKqJuE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "122139141786-a4vipj068nfniba7krdl4gg8qvn0n8uq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
