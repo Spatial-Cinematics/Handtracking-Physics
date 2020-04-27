@@ -9,10 +9,12 @@ public class Grabbable : MonoBehaviour {
     private List<Rigidbody> contacts = new List<Rigidbody>();
     private int contactCount;
     private Handedness currentlyBeingGrabbed = Handedness.None;
+    private Transform originalParent;
 
     private PhysicsHand handRight, handLeft;
     
     private void Start() {
+        originalParent = transform.parent;
         myRb = GetComponent<Rigidbody>();
         PhysicsHand[] hands = FindObjectsOfType<PhysicsHand>();
         if (hands[0].handedness == Handedness.Right) {
@@ -80,7 +82,7 @@ public class Grabbable : MonoBehaviour {
 //                break;
 //        }
 
-        transform.parent = null;
+        transform.parent = originalParent;
         myRb.isKinematic = false;
         currentlyBeingGrabbed = Handedness.None;
 
