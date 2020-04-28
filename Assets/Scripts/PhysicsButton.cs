@@ -6,8 +6,6 @@ using UnityEngine.Events;
 
 public class PhysicsButton : MonoBehaviour {
 
-    public float buttonTriggerDistance = 0.015f;
-
     public UnityEvent onButtonPressed;
     private bool pressed;
     

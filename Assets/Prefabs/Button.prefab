@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1387784192713951033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5557505228923127363}
+  - component: {fileID: 1091614255194982515}
+  m_Layer: 10
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5557505228923127363
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387784192713951033}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5486, z: 0}
+  m_LocalScale: {x: 0.09728913, y: 0.003979515, z: 0.09728913}
+  m_Children: []
+  m_Father: {fileID: 3816558297539975708}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1091614255194982515
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387784192713951033}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3816558296052476664
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +155,7 @@ SpringJoint:
   m_ConnectedBody: {fileID: 3816558297344083347}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000023771013, y: 2.5216362, z: 0.0000004457065}
+  m_ConnectedAnchor: {x: 0, y: 2.5216362, z: 0}
   serializedVersion: 2
   m_Spring: 9999
   m_Damper: 99
@@ -374,6 +418,7 @@ Transform:
   m_LocalScale: {x: 0.15507713, y: 1.2354065, z: 0.15507713}
   m_Children:
   - {fileID: 3816558296059659032}
+  - {fileID: 5557505228923127363}
   m_Father: {fileID: 3816558296757792548}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

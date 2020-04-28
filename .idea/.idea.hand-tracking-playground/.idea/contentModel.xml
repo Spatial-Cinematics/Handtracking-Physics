@@ -765,6 +765,7 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="AvatarBuilder.cs" t="Include" />
+          <e p="Billboard.cs" t="Include" />
           <e p="ControllerInputRig.cs" t="Include" />
           <e p="ControllerInputSkeleton.cs" t="Include" />
           <e p="EnableAfterStart.cs" t="Include" />
@@ -791,7 +792,8 @@
           <e p="LineDrawer.cs" t="Include" />
           <e p="PhysicsButton.cs" t="Include" />
           <e p="PhysicsHand.cs" t="Include" />
-          <e p="QuestionaireManager.cs" t="Include" />
+          <e p="QuestionnaireManager.cs" t="Include" />
+          <e p="RoomReset.cs" t="Include" />
         </e>
         <e p="Shaders" t="Include">
           <e p="Blending.shader" t="Include" />
