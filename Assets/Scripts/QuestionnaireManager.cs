@@ -5,6 +5,7 @@ using System.Globalization;
 using Firebase;
 using Firebase.Database;
 using Firebase.Unity.Editor;
+using Proyecto26;
 using TMPro;
 using UnityEngine;
 
@@ -14,10 +15,8 @@ public class QuestionnaireManager : MonoBehaviour {
         StronglyDisagree, Disagree, Neutral, Agree, StronglyAgree
     }
     
-    private FirebaseDatabase _database;
-    private DatabaseReference _databaseReference;
-
     private string _sessionId = "";
+    private SessionObject _sessionObject;
     
     private List<string> questions = new List<string> {
         "Interacting with very large objects like the table and walls is more realistic with hand-tracking than controllers.",
@@ -46,53 +45,12 @@ public class QuestionnaireManager : MonoBehaviour {
     public TMP_Text questionText, infoText;
     private FirebaseApp _firebaseApp;
     
-    private IEnumerator Start() {
-        
-        Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task => {
-            var dependencyStatus = task.Result;
-            if (dependencyStatus == Firebase.DependencyStatus.Available) {
-                // Create and hold a reference to your FirebaseApp,
-                // where app is a Firebase.FirebaseApp property of your application class.
-                Debug.Log($"Firebase app = {_firebaseApp}");
-                _firebaseApp = Firebase.FirebaseApp.DefaultInstance;
-                Debug.Log($"Firebase app = {_firebaseApp}");
-                // Set a flag here to indicate whether Firebase is ready to use by your app.
-            } else {
-                UnityEngine.Debug.LogError(System.String.Format(
-                    "Could not resolve all Firebase dependencies: {0}", dependencyStatus));
-                // Firebase Unity SDK is not safe to use here.
-            }
-        });
-
-        while (_firebaseApp == null) {
-            
-            yield return null;
-        }
-
-//        Debug.Log($"Set editor database URL");
-//        _firebaseApp.SetEditorDatabaseUrl("https://hand-tracking-9a2c7.firebaseio.com");
-        _database = FirebaseDatabase.DefaultInstance;
-        _databaseReference = _database.RootReference;
-//        Debug.Log($"Database Root Reference: {_databaseReference}");
-        
-        float nullTimer = 0;
-        while (_database == null) {
-            nullTimer += Time.deltaTime;
-            if (nullTimer > 0)
-                Debug.LogError($"Database was null for more than 10 seconds");
-            yield return null;
-        }
-        
-        InitScene();
-        
-    }
-
-    private void InitScene() {
+    private void Start() {
         _sessionId = DateTime.Now.ToString(CultureInfo.InvariantCulture);
+        _sessionObject = new SessionObject(_sessionId);
         InitInfoText();
         SetQuestion(0);
     }
-
     public void SetQuestion(int index) {
         currentQuestionIndex = index;
         questionText.text = questions[index];
@@ -102,14 +60,10 @@ public class QuestionnaireManager : MonoBehaviour {
         
         if (currentQuestionIndex >= questions.Count)
             return;
-        try { _database.GetReference($"{_sessionId}/{currentQuestionIndex}")
-            .SetValueAsync(((AnswerChoice)answer).ToString());}
-        catch (Exception e) {
-            Debug.LogError($"{e}: Failed call -> _database.GetReference");
-            _databaseReference.Child(_sessionId).Child(currentQuestionIndex.ToString())
-                .SetValueAsync(((AnswerChoice)answer).ToString());
-        }
-        
+
+        _sessionObject.answerData.answers.Add(((AnswerChoice)answer).ToString());
+        if (_sessionObject.answerData.answers.Count >= questions.Count)
+            RestClient.Post("https://hand-tracking-9a2c7.firebaseio.com/.json", _sessionObject);
         
         currentQuestionIndex++;
         SetQuestion(currentQuestionIndex);
@@ -122,11 +76,50 @@ public class QuestionnaireManager : MonoBehaviour {
             infoText.text += $"{i+1}. {info[i]}\n";
         }
     }
+
+    private void FireBaseSdkInit() { //
+        Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task => {
+            var dependencyStatus = task.Result;
+            if (dependencyStatus == Firebase.DependencyStatus.Available) {
+                // Create and hold a reference to your FirebaseApp - a Firebase.FirebaseApp property of your application class.
+                _firebaseApp = Firebase.FirebaseApp.DefaultInstance;
+            } else {
+                UnityEngine.Debug.LogError(System.String.Format(
+                    "Could not resolve all Firebase dependencies: {0}", dependencyStatus));
+                // Firebase Unity SDK is not safe to use here.
+            }
+        });
+        
+        Firebase.Auth.FirebaseAuth auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
+        auth.SignInWithCustomTokenAsync("q9VfSsxv5hNP10nkT3293z6uzHN2").ContinueWith(task => {
+            if (task.IsCanceled) {
+                Debug.LogError("Sign in canceled.");
+                return;
+            }
+            if (task.IsFaulted) {
+                Debug.LogError("Sign in faulted: " + task.Exception);
+            }
+        });
+    }
     
 //    public void SaveData(int i) {
 //        Debug.Log($"Data saved");
 //        _database.GetReference(KEY_TEST).SetRawJsonValueAsync(JsonUtility.ToJson(testData));
 //    }
     
+}
+
+[Serializable]
+public class SessionObject {
+    public string sessionId;
+    public AnswerData answerData = new AnswerData();
+    public SessionObject(string sessionId) {
+        this.sessionId = sessionId;
+    }
+}
+
+[Serializable]
+public class AnswerData {
+    public List<string> answers = new List<string>();
 }
 

@@ -7,6 +7,11 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="ExternalDependencyManager" t="Include">
+          <e p="Editor" t="Include">
+            <e p="external-dependency-manager_version-1.2.152_manifest.txt" t="Include" />
+          </e>
+        </e>
         <e p="Materials" t="Include">
           <e p="Checkered.shader" t="Include" />
           <e p="Morph.shader" t="Include" />
@@ -763,6 +768,48 @@
             </e>
           </e>
         </e>
+        <e p="RestClient" t="Include">
+          <e p="DemoScene" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="MainScript.cs" t="Include" />
+              <e p="Model" t="Include">
+                <e p="Photo.cs" t="Include" />
+                <e p="Post.cs" t="Include" />
+                <e p="Todo.cs" t="Include" />
+                <e p="User.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="Packages" t="Include">
+            <e p="Proyecto26.RestClient" t="Include">
+              <e p="Helpers" t="Include">
+                <e p="Common.cs" t="Include" />
+                <e p="Extensions.cs" t="Include" />
+                <e p="HttpBase.cs" t="Include" />
+                <e p="JsonHelper.cs" t="Include" />
+                <e p="RequestException.cs" t="Include" />
+                <e p="RequestHelper.cs" t="Include" />
+                <e p="RequestHelperExtension.cs" t="Include" />
+                <e p="ResponseHelper.cs" t="Include" />
+                <e p="StaticCoroutine.cs" t="Include" />
+              </e>
+              <e p="RestClient.cs" t="Include" />
+              <e p="RestClientPromise.cs" t="Include" />
+            </e>
+            <e p="RSG.Promise" t="Include">
+              <e p="EnumerableExt.cs" t="Include" />
+              <e p="Exceptions" t="Include">
+                <e p="PromiseException.cs" t="Include" />
+                <e p="PromiseStateException.cs" t="Include" />
+              </e>
+              <e p="Promise.cs" t="Include" />
+              <e p="Promise_NonGeneric.cs" t="Include" />
+              <e p="PromiseHelpers.cs" t="Include" />
+              <e p="PromiseTimer.cs" t="Include" />
+              <e p="Tuple.cs" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="Scripts" t="Include">
           <e p="AvatarBuilder.cs" t="Include" />
           <e p="Billboard.cs" t="Include" />
@@ -872,6 +919,7 @@
             </e>
           </e>
         </e>
+        <e p="values.xml" t="Include" />
       </e>
       <e p="hand-tracking-playground.sln" t="IncludeFlat" />
       <e p="obj" t="ExcludeRecursive" />

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--    <! &#45;&#45; Present in all applications &ndash;&gt;-->
+    <string name="google_app_id" translatable="false">1:122139141786:android:0d102a837c1e156789a123</string>
+
+<!--    <! &#45;&#45; Present in applications with the appropriate services configured &ndash;&gt;-->
+    <string name="firebase_database_url" translatable="false">https://hand-tracking-9a2c7.firebaseio.com</string>
+    <string name="google_api_key" translatable="false">AIzaSyAPRjetRII7IpTBj79A1ubC7uxSKHKqJuE</string>
+    <string name="project_id" translatable="false">hand-tracking-9a2c7</string>
+
+</resources>
