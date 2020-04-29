@@ -60,11 +60,11 @@ public class QuestionnaireManager : MonoBehaviour {
         
         if (currentQuestionIndex >= questions.Count)
             return;
-
+#if !UNITY_EDITOR
         _sessionObject.answerData.answers.Add(((AnswerChoice)answer).ToString());
         if (_sessionObject.answerData.answers.Count >= questions.Count)
             RestClient.Post("https://hand-tracking-9a2c7.firebaseio.com/.json", _sessionObject);
-        
+#endif  
         currentQuestionIndex++;
         SetQuestion(currentQuestionIndex);
         

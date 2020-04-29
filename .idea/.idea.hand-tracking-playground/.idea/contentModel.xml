@@ -838,14 +838,13 @@
           <e p="HandTracker.cs" t="Include" />
           <e p="InputDeviceSwitcher.cs" t="Include" />
           <e p="LineDrawer.cs" t="Include" />
-          <e p="PhysicsButton.cs" t="Include" />
           <e p="PhysicsHand.cs" t="Include" />
-          <e p="QuestionnaireManager.cs" t="Include" />
-          <e p="RoomReset.cs" t="Include" />
           <e p="PhysicsInteractables" t="Include">
             <e p="PhysicsButton.cs" t="Include" />
             <e p="PhysicSwitch.cs" t="Include" />
           </e>
+          <e p="QuestionnaireManager.cs" t="Include" />
+          <e p="RoomReset.cs" t="Include" />
         </e>
         <e p="Shaders" t="Include">
           <e p="Blending.shader" t="Include" />
