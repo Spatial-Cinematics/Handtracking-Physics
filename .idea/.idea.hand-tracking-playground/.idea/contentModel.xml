@@ -833,6 +833,7 @@
           <e p="Force.cs" t="Include" />
           <e p="Grabbable.cs" t="Include" />
           <e p="HandCapsules.cs" t="Include" />
+          <e p="HandMaterialSwitcher.cs" t="Include" />
           <e p="HandPhysicsGenerator.cs" t="Include" />
           <e p="HandTracker.cs" t="Include" />
           <e p="InputDeviceSwitcher.cs" t="Include" />
@@ -841,6 +842,10 @@
           <e p="PhysicsHand.cs" t="Include" />
           <e p="QuestionnaireManager.cs" t="Include" />
           <e p="RoomReset.cs" t="Include" />
+          <e p="PhysicsInteractables" t="Include">
+            <e p="PhysicsButton.cs" t="Include" />
+            <e p="PhysicSwitch.cs" t="Include" />
+          </e>
         </e>
         <e p="Shaders" t="Include">
           <e p="Blending.shader" t="Include" />

@@ -867,8 +867,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handedness: 1
   inputMode: 0
+  handMesh: {fileID: 5441959366465032440}
   controllerAnim: {fileID: 8662637602154255295}
-  heldObjectIK: {fileID: 0}
+  controllerHandAnimationSpeed: 10
   handtrackingOffsets:
     rotation: {x: 180, y: 180, z: 0}
     position: {x: 0, y: 0, z: 0}
