@@ -845,6 +845,7 @@
           </e>
           <e p="QuestionnaireManager.cs" t="Include" />
           <e p="RoomReset.cs" t="Include" />
+          <e p="SunMover.cs" t="Include" />
         </e>
         <e p="Shaders" t="Include">
           <e p="Blending.shader" t="Include" />
