@@ -37,6 +37,7 @@ public class PhysicsHand : MonoBehaviour {
 
     public Handedness handedness;
     public InputMode inputMode = InputMode.Hands;
+    public SkinnedMeshRenderer handMesh;
     public Animator controllerAnim; //controller model is driven by animator that takes blend values from controller input
     public float controllerHandAnimationSpeed = 10f;
     public TransformOffset handtrackingOffsets, controllerOffsets; //rotation offsets for hand-tracking mode
